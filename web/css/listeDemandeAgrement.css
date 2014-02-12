@@ -1,0 +1,28 @@
+#infoEntite 
+{
+    display: none;
+}
+#menu
+{
+    display: none;
+}
+#content 
+{
+    width: 990px;
+    margin-left: auto;
+}
+.style_texte
+{
+    padding: 0 10px;
+    background-color: white;
+    font-size: 14px;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#valide_demande_agrement th
+{
+    
+}
