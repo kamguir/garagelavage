@@ -1,0 +1,8 @@
+newDepensesSuccess:
+  stylesheets:
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+  javascripts: [ jquery.maskedinput-1.3.js ]
+editSuccess:
+  stylesheets:
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+  javascripts: [ jquery.maskedinput-1.3.js ]

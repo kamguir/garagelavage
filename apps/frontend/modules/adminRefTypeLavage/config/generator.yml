@@ -1,0 +1,22 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           refTypeLavage
+    theme:                 admin15
+    non_verbose_templates: true
+    with_show:             false
+    singular:              refTypeLavage
+    plural:                refTypeLavages
+    route_prefix:          ref_type_lavage
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  
+        display: [libelle,montant_lavage]
+      form:    ~
+      edit:    ~
+      new:     ~

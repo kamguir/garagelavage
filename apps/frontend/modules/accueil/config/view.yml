@@ -1,0 +1,20 @@
+indexSuccess:
+ 
+  javascripts:    
+    - jquery.hotkeys.js
+    - jquery.cookie.js
+    - jquery.jstree.js
+    - highcharts.js
+    - exporting.js
+    - jquery.dataTables.min.js
+    - FR_fr.js
+    - jquery.dataTables.min.js
+    - jquery.plugins.js
+    - jquery-ui.js
+  
+  stylesheets:    
+    - dataTable/table_jui.css
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+    - main.css
+
+  layout:         layout  

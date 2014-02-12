@@ -1,0 +1,24 @@
+indexSuccess:
+  javascripts:
+    - jquery.dataTables.min.js
+    - jquery.plugins.js
+    - jquery-ui.js
+    - jscolor.js
+  stylesheets:
+    - dataTable/table_jui.css
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+  layout:         layout
+  
+newVoitureSuccess:
+  javascripts: [ jquery.orca.notif,jscolor/jscolor.js ,jquery.maskedinput-1.3.js ,fullcalendar.min.js,jquery-ui-timepicker-addon.js,i18n/jquery.ui.datepicker-fr.js, https://maps.googleapis.com/maps/api/js?sensor=true, jquery.dataTables.min.js , datatable/fr_FR.js]
+  stylesheets:
+    - forFormulaire.css
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+    - fullcalendar.css
+    
+editSuccess:
+  javascripts: [ jscolor/jscolor.js ,jquery.maskedinput-1.3.js,fullcalendar.min.js,jquery-ui-timepicker-addon.js,i18n/jquery.ui.datepicker-fr.js, https://maps.googleapis.com/maps/api/js?sensor=true, jquery.dataTables.min.js , datatable/fr_FR.js]
+  stylesheets:
+    - forFormulaire.css
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+    - fullcalendar.css

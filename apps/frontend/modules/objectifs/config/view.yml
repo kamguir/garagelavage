@@ -1,0 +1,4 @@
+newObjectifSuccess:
+  stylesheets:
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+  javascripts: [ jscolor/jscolor.js ,jquery.maskedinput-1.3.js ]    

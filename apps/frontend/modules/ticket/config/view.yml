@@ -1,0 +1,6 @@
+editSuccess:
+  stylesheets:
+    - ui-lightness/jquery-ui-1.8.17.custom.css
+    - bootstrap/bootstrap-combined.min.css
+    - bootstrap/bootstrap-datetimepicker.min.css
+  javascripts: [ bootstrap/bootstrap-datetimepicker.min.js,  bootstrap/moment.min.js, -jquery-1.5.2.min.js ]
