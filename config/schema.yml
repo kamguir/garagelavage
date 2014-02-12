@@ -1,0 +1,114 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  lnk_type_lavage_facture:
+    _attributes: { phpName: LnkTypeLavageFacture, idMethod: native }
+    id_type_lavage: { phpName: IdTypeLavage, type: INTEGER, primaryKey: true, required: true, foreignTable: ref_type_lavage, foreignReference: id_type_lavage }
+    id_facture: { phpName: IdFacture, type: INTEGER, primaryKey: true, required: true, foreignTable: tbl_facture, foreignReference: id_facture }
+    _indexes: { FK_lnk_type_lavage_facture: [id_facture] }
+  ref_couleur:
+    _attributes: { phpName: RefCouleur, idMethod: native }
+    id_couleur: { phpName: IdCouleur, type: INTEGER, primaryKey: true, required: true }
+    nom_couleur: { phpName: NomCouleur, type: VARCHAR, size: '100', required: false }
+    code: { phpName: Code, type: VARCHAR, size: '100', required: false }
+  ref_depenses:
+    _attributes: { phpName: RefDepenses, idMethod: native }
+    id_ref_depenses: { phpName: IdRefDepenses, type: INTEGER, primaryKey: true, required: true }
+    libelle_depenses: { phpName: LibelleDepenses, type: VARCHAR, size: '255', required: false }
+  ref_marque:
+    _attributes: { phpName: RefMarque, idMethod: native }
+    marque_id: { phpName: MarqueId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    marque_libelle: { phpName: MarqueLibelle, type: VARCHAR, size: '127', required: false }
+  ref_motorisation:
+    _attributes: { phpName: RefMotorisation, idMethod: native }
+    id_motorisation: { phpName: IdMotorisation, type: INTEGER, primaryKey: true, required: true }
+    motorisation: { phpName: Motorisation, type: VARCHAR, size: '100', required: false }
+  ref_nbr_portes:
+    _attributes: { phpName: RefNbrPortes, idMethod: native }
+    id_nbr_portes: { phpName: IdNbrPortes, type: INTEGER, primaryKey: true, required: true }
+    libellet_nbr_portes: { phpName: LibelletNbrPortes, type: VARCHAR, size: '50', required: false }
+  ref_situation:
+    _attributes: { phpName: RefSituation, idMethod: native }
+    id_situation: { phpName: IdSituation, type: INTEGER, size: '10', primaryKey: true, required: true }
+    situation: { phpName: Situation, type: VARCHAR, size: '255', required: false }
+  ref_type_lavage:
+    _attributes: { phpName: RefTypeLavage, idMethod: native }
+    id_type_lavage: { phpName: IdTypeLavage, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    libelle: { phpName: Libelle, type: VARCHAR, size: '250', required: false }
+    montant_lavage: { phpName: MontantLavage, type: DOUBLE, required: false }
+    time_lavage: { phpName: TimeLavage, type: TIME, required: false }
+  tbl_client:
+    _attributes: { phpName: TblClient, idMethod: native }
+    id_client: { phpName: IdClient, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    cin_client: { phpName: CinClient, type: VARCHAR, size: '10', required: false }
+    nom_client: { phpName: NomClient, type: VARCHAR, size: '255', required: false }
+    prenom_client: { phpName: PrenomClient, type: VARCHAR, size: '255', required: false }
+    situation: { phpName: Situation, type: INTEGER, required: false, foreignTable: ref_situation, foreignReference: id_situation }
+    age_client: { phpName: AgeClient, type: INTEGER, required: false }
+    num_tel: { phpName: NumTel, type: INTEGER, required: false }
+    adresse_client: { phpName: AdresseClient, type: VARCHAR, size: '255', required: false }
+    fonction_client: { phpName: FonctionClient, type: VARCHAR, size: '255', required: false }
+    _indexes: { FK_tbl_client: [situation] }
+  tbl_depenses:
+    _attributes: { phpName: TblDepenses, idMethod: native }
+    id_depenses: { phpName: IdDepenses, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    date_depenses: { phpName: DateDepenses, type: DATE, required: false }
+    id_ref_depenses: { phpName: IdRefDepenses, type: INTEGER, required: false, foreignTable: ref_depenses, foreignReference: id_ref_depenses }
+    montant_depenses: { phpName: MontantDepenses, type: DOUBLE, required: false }
+    etat_payement: { phpName: EtatPayement, type: BOOLEAN, size: '1', required: false, defaultValue: false }
+    _indexes: { FK_tbl_depances: [id_ref_depenses] }
+    _uniques: { id_depances: [id_depenses] }
+  tbl_employeur:
+    _attributes: { phpName: TblEmployeur, idMethod: native }
+    id_employeur: { phpName: IdEmployeur, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    nom_employeur: { phpName: NomEmployeur, type: VARCHAR, size: '50', required: false }
+    prenom_employeur: { phpName: PrenomEmployeur, type: VARCHAR, size: '50', required: false }
+    nom_societe: { phpName: NomSociete, type: VARCHAR, size: '30', required: false }
+    num_telephone_employeur: { phpName: NumTelephoneEmployeur, type: VARCHAR, size: '20', required: false }
+    adresse_societe: { phpName: AdresseSociete, type: VARCHAR, size: '100', required: false }
+    ville_societe: { phpName: VilleSociete, type: VARCHAR, size: '50', required: false }
+    adresse_email: { phpName: AdresseEmail, type: VARCHAR, size: '50', required: false }
+  tbl_facture:
+    _attributes: { phpName: TblFacture, idMethod: native }
+    id_facture: { phpName: IdFacture, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    id_voiture: { phpName: IdVoiture, type: INTEGER, required: false, foreignTable: tbl_voiture, foreignReference: id_voiture }
+    id_type_lavage: { phpName: IdTypeLavage, type: INTEGER, required: false }
+    prix_lavage: { phpName: PrixLavage, type: DOUBLE, required: false }
+    commentaire_reglement: { phpName: CommentaireReglement, type: VARCHAR, size: '255', required: false }
+    date_reglement: { phpName: DateReglement, type: TIMESTAMP, required: false }
+    etat: { phpName: Etat, type: BOOLEAN, size: '1', required: false, defaultValue: false }
+    _indexes: { FK_voiture_tbl_reglement: [id_voiture], FK_tbl_facture: [id_type_lavage] }
+  tbl_objectif:
+    _attributes: { phpName: TblObjectif, idMethod: native }
+    id_objectif: { phpName: IdObjectif, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    objectif_date: { phpName: ObjectifDate, type: DATE, required: false }
+    objectif_fixe: { phpName: ObjectifFixe, type: INTEGER, required: false }
+    objectif_realise: { phpName: ObjectifRealise, type: INTEGER, required: false }
+  tbl_tapis:
+    _attributes: { phpName: TblTapis, idMethod: native }
+    num_tapis: { phpName: NumTapis, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    taille_tapis: { phpName: TailleTapis, type: INTEGER, required: false }
+    prix_mettre_carre: { phpName: PrixMettreCarre, type: DOUBLE, required: false, defaultValue: '15' }
+    montant_lavage_tapis: { phpName: MontantLavageTapis, type: DOUBLE, required: false }
+    date_lavage_tapis: { phpName: DateLavageTapis, type: TIMESTAMP, required: false }
+  tbl_ticket:
+    _attributes: { phpName: TblTicket, idMethod: native }
+    id_ticket: { phpName: IdTicket, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    id_facture: { phpName: IdFacture, type: INTEGER, required: false, foreignTable: tbl_facture, foreignReference: id_facture }
+    date_entree_garage: { phpName: DateEntreeGarage, type: TIMESTAMP, required: false }
+    date_sortie_garage: { phpName: DateSortieGarage, type: TIMESTAMP, required: false }
+    _indexes: { FK_tbl_ticket: [id_facture] }
+  tbl_voiture:
+    _attributes: { phpName: TblVoiture, idMethod: native }
+    id_voiture: { phpName: IdVoiture, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    id_client: { phpName: IdClient, type: INTEGER, required: false, foreignTable: tbl_client, foreignReference: id_client }
+    immatriculation: { phpName: Immatriculation, type: VARCHAR, size: '100', required: false }
+    id_marque: { phpName: IdMarque, type: INTEGER, required: false, foreignTable: ref_marque, foreignReference: marque_id }
+    id_motorisation: { phpName: IdMotorisation, type: INTEGER, required: false, foreignTable: ref_motorisation, foreignReference: id_motorisation }
+    couleur: { phpName: Couleur, type: VARCHAR, size: '30', required: false }
+    nbr_portes: { phpName: NbrPortes, type: INTEGER, required: false, foreignTable: ref_nbr_portes, foreignReference: id_nbr_portes }
+    modele: { phpName: Modele, type: VARCHAR, size: '100', required: false }
+    annee: { phpName: Annee, type: INTEGER, required: false }
+    nb_visite: { phpName: NbVisite, type: INTEGER, required: false }
+    _indexes: { FK_tbl_voiture: [id_motorisation], FK_marque_tbl_voiture: [id_marque], FK_couleur2_tbl_voiture: [couleur], FK_tbl_voiture_client: [id_client], FK_tbl_voiture_nbr_portes: [nbr_portes] }
