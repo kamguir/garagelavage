@@ -1,0 +1,104 @@
+ref_type_lavage:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                refTypeLavage
+    module:               adminRefTypeLavage
+    prefix_path:          /adminRefTypeLavage
+    column:               id_type_lavage
+    with_wildcard_routes: true
+
+ref_marque:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                refMarque
+    module:               adminRefMarque
+    prefix_path:          /adminRefMarque
+    column:               marque_id
+    with_wildcard_routes: true
+
+ref_depenses:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                refDepenses
+    module:               adminRefDepenses
+    prefix_path:          /adminRefDepenses
+    column:               id_ref_depenses
+    with_wildcard_routes: true
+
+tbl_voiture:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                TblVoiture
+    module:               adminVoiture
+    prefix_path:          /adminVoiture
+    column:               id_voiture
+    with_wildcard_routes: true
+
+tbl_depenses:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                tblDepenses
+    module:               adminDepenses
+    prefix_path:          /adminDepenses
+    column:               id_depenses
+    with_wildcard_routes: true
+
+tbl_objectif:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                tblObjectif
+    module:               adminObjectif
+    prefix_path:          /adminObjectif
+    column:               id_objectif
+    with_wildcard_routes: true
+
+tbl_ticket:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                tblTicket
+    module:               adminTicket
+    prefix_path:          /adminTicket
+    column:               id_ticket
+    with_wildcard_routes: true
+
+tbl_client:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                tblClient
+    module:               adminClient
+    prefix_path:          /adminClient
+    column:               cin_client
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: accueil, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
+
+dataTableSourceVoitures:
+  url: /voiture/executeListeVoituresAjax
+  param: { module: voiture, action: listeVoituresAjax}
+
+suiviVoitures:
+  url: /voiture/index
+  param: { module: voiture, action: index}
+  
+administrationpage:
+  url:   /admin
+  param: { module: admin, action: index }    
+  
+logVoitures:
+  url: /voiture/log
+  param: { module: voiture, action: log}  

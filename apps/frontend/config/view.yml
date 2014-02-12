@@ -1,0 +1,17 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+#    title:        symfony project
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    [main.css, bootstrap/bootstrap.css, bootstrap/bootstrap.min.css ,bootstrap/bootstrap-responsive.css, bootstrap/bootstrap-responsive.min.css]
+
+  javascripts:    [ bootstrap/bootstrap.js ,jquery.min.js , bootstrap/bootstrap.min.js, jquery-1.5.2.min.js, jquery-ui-1.8.17.custom.min.js, jquery-ui-i18n.js, tiny_mce.js, FR_fr.js]
+
+  has_layout:     true
+  layout:         layout
