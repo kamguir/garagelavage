@@ -14,7 +14,7 @@
                     <?php if (!$form->getObject()->isNew()): ?>
                         &nbsp;<?php echo link_to('Delete', 'facture/delete?id_facture=' . $form->getObject()->getIdFacture(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
                     <?php endif; ?>
-                    <input type="button" id="bouton_enregistrer" value="Enregistrer" />
+                        <a class="btn btn-info" href="<?php echo url_for('facture/listeFacture') ?>">Enregistrer</a>
                 </td>
             </tr>
         </tfoot>
@@ -63,6 +63,13 @@
                 </td>
             </tr>
             <tr>
+                <th><?php echo $form['lnk_type_lavage_facture_list']->renderLabel() ?></th>
+                <td>
+                    <?php echo $form['lnk_type_lavage_facture_list']->renderError() ?>
+                    <?php echo $form['lnk_type_lavage_facture_list'] ?>
+                </td>
+            </tr>
+            <tr>
                 <th><?php echo $form['etat']->renderLabel() ?></th>
                 <td>
                     <?php echo $form['etat']->renderError() ?>
@@ -70,10 +77,7 @@
                 </td>
             </tr>
             <tr>
-                <th><?php echo $form['lnk_type_lavage_facture_list']->renderLabel() ?></th>
-                <td>
-                    <?php echo $form['lnk_type_lavage_facture_list']->renderError() ?>
-                    <?php echo $form['lnk_type_lavage_facture_list'] ?>
+                <td><div class="clear">&nbsp</div>
                 </td>
             </tr>
         </tbody>

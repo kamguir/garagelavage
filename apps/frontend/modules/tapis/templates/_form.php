@@ -8,7 +8,7 @@
   <table>
     <tfoot>
       <tr>
-        <td colspan="2">
+          <td colspan="2"><div class="clear">&nbsp</div>
           <?php echo $form->renderHiddenFields(false) ?>
           &nbsp;<a href="<?php echo url_for('tapis/index') ?>">Back to list</a>
           <?php if (!$form->getObject()->isNew()): ?>
