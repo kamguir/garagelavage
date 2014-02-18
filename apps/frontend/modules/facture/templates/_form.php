@@ -10,9 +10,9 @@
             <tr>
                 <td colspan="2">
                     <?php echo $form->renderHiddenFields(false) ?>
-                    &nbsp;<a href="<?php echo url_for('facture/listeFacture') ?>">Back to list</a>
+                    &nbsp;<a class="btn btn-info" href="<?php echo url_for('facture/listeFacture') ?>">Retour list</a>
                     <?php if (!$form->getObject()->isNew()): ?>
-                        &nbsp;<?php echo link_to('Delete', 'facture/delete?id_facture=' . $form->getObject()->getIdFacture(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
+                        &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'facture/delete?id_facture=' . $form->getObject()->getIdFacture(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
                     <?php endif; ?>
                         <a class="btn btn-info" href="<?php echo url_for('facture/listeFacture') ?>">Enregistrer</a>
                 </td>

@@ -45,9 +45,29 @@
                         </tr>
                         <tr style="font-family: monospace;background-color: lightgrey;">
                             <td>GAIN NET :</td>
-                            <td><span class="badge"><?php echo $montanTotalJour - $depensesTotalJour ?></span></td>
-                            <td><span class="badge"><?php echo $montanTotalSemaine - $depensesSemaine ?></span></td>
-                            <td><span class="badge"><?php echo $montanTotalMois - $depensesMois ?></span></td>
+                            <?php
+                            $gainParJour = $montanTotalJour - $depensesTotalJour;
+                            $gainParSemaine = $montanTotalSemaine - $depensesSemaine;
+                            $gainParMois = $montanTotalMois - $depensesMois;
+                            ?>
+                            <td style="">
+                                <?php if ($gainParJour < 0): ?>
+                                    <div class="logoWorning" ></div>
+                                <?php endif; ?>
+                                <span class="badge"><?php echo $gainParJour; ?></span>
+                            </td>
+                            <td>
+                                <?php if ($gainParSemaine < 0): ?>
+                                    <div class="logoWorning" ></div>
+                                <?php endif; ?>
+                                <span class="badge"><?php echo $gainParSemaine ?></span>
+                            </td>
+                            <td>
+                                <?php if ($gainParMois < 0): ?>
+                                    <div class="logoWorning" ></div>
+                                <?php endif; ?>
+                                <span class="badge"><?php echo $gainParMois ?></span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -77,8 +77,8 @@
                         </tr>
                     </table>
                     <div class="col-lg-10 col-lg-offset-2">
-                        <input class="btn btn-default" type="button" name="cancel" value="Cancel" onClick="window.location = '<?php echo url_for('client/index'); ?>';" />
-                        <button type="submit" class="btn btn-primary">Submit</button> 
+                        <input class="btn btn-default" type="button" name="cancel" value="Annuler" onClick="window.location = '<?php echo url_for('client/index'); ?>';" />
+                        <button type="submit" class="btn btn-primary">Enregistrer</button> 
                     </div>
                 </fieldset>
             </form>

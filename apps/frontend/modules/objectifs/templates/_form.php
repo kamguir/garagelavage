@@ -10,11 +10,11 @@
       <tr>
         <td colspan="2">
           <?php echo $form->renderHiddenFields(false) ?>
-          &nbsp;<a href="<?php echo url_for('objectifs/index') ?>">Back to list</a>
+          &nbsp;<a class="btn btn-info" href="<?php echo url_for('objectifs/index') ?>">Retour list</a>
           <?php if (!$form->getObject()->isNew()): ?>
-            &nbsp;<?php echo link_to('Delete', 'objectifs/delete?id_objectif='.$form->getObject()->getIdObjectif(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
+            &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'objectifs/delete?id_objectif='.$form->getObject()->getIdObjectif(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
           <?php endif; ?>
-          <input type="submit" value="Save" />
+          <input class="btn btn-info" type="submit" value="Enregistrer" />
         </td>
       </tr>
     </tfoot>

@@ -24,6 +24,7 @@ test:
 
 all:
   .settings:
+    default_culture:        fr
     # Form security secret (CSRF protection)
     csrf_secret:            655b162f2ec9d0bf83f8a33a52332202b86ac89f
 
@@ -33,6 +34,7 @@ all:
 
     # Enable the database manager
     use_database:           true
+    i18n:                   on
     standard_helpers: [Partial, Cache, I18N]
   .actions:
     #page not found

@@ -93,7 +93,7 @@ dataTableSourceVoitures:
 
 suiviVoitures:
   url: /voiture/index
-  param: { module: voiture, action: index}
+  param: { module: voiture, action: index }
   
 administrationpage:
   url:   /admin
@@ -101,4 +101,14 @@ administrationpage:
   
 logVoitures:
   url: /voiture/log
-  param: { module: voiture, action: log}  
+  param: { module: voiture, action: log }
+  
+change_language:
+  url:   /accueil
+  param: { module: language, action: changeLanguage }
+  
+localized_homepage:
+  url:   /:sf_culture/
+  param: { module: accueil, action: index }
+  requirements:
+    sf_culture: (?:fr|en)  

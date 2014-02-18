@@ -1,6 +1,6 @@
 editSuccess:
+  javascripts: [ jscolor/jscolor.js ,jquery.maskedinput-1.3.js ,fullcalendar.min.js,jquery-ui-timepicker-addon.js,i18n/jquery.ui.datepicker-fr.js, https://maps.googleapis.com/maps/api/js?sensor=true, jquery.dataTables.min.js]
   stylesheets:
+    - forFormulaire.css
     - ui-lightness/jquery-ui-1.8.17.custom.css
-    - bootstrap/bootstrap-combined.min.css
-    - bootstrap/bootstrap-datetimepicker.min.css
-  javascripts: [ bootstrap/bootstrap-datetimepicker.min.js,  bootstrap/moment.min.js, -jquery-1.5.2.min.js ]
+    - fullcalendar.css    

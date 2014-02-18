@@ -12,6 +12,9 @@
         <?php include_javascripts() ?>
     </head>
     <body style="padding-top: 80px;">
+        <!--changer la langues--> 
+        <?php // include_component('language', 'language') ?>
+
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div id="header">
@@ -40,7 +43,7 @@
                             <a href="<?php echo url_for('@administrationpage') ?>">Administration</a>
                         </li>
                         <li>
-                            <!--<a href="<?php // echo url_for('@logVoitures')    ?>">Log</a>-->
+                            <!--<a href="<?php // echo url_for('@logVoitures')      ?>">Log</a>-->
                         </li>
                         <li>
                             <a href="<?php echo url_for('accueil/alerts') ?>">Alerts!</a>
@@ -55,18 +58,18 @@
         </div>
         <div class="row">
             <!--col-xs-6 col-sm-3-->
-            <div class="col-md-2" style="margin-left: 6%; width: 14%;">
+            <div class="col-md-2" style="margin-left: 4%; width: 14%; position: fixed;" >
                 <div class="well">
                     <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary" style="padding: 3px; margin-bottom: 5px;width: 100%;" ><i class="icon-plus-sign icon-white"></i><p class="logoClient" ></p>Nouveau Client</a>
                     <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
-                    <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouvelle Tapis</a>
+                    <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouveau Tapis</a>
                     <a href="<?php echo url_for('facture/listeFacture') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
                     <a href="<?php echo url_for('ticket/imprimerTicket') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoPrint" ></p>Imprimer Ticket</a>
                     <a href="<?php echo url_for('objectifs/newObjectif') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoObjectif" ></p>Gestion Objectifs</a>
                     <a href="<?php echo url_for('depenses/newDepenses') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoDepences" ></p>Gestion Dépences</a>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-8">
+            <div class="col-md-10" style="float: right;">
                 <?php echo $sf_content ?>
             </div>
             <div class="clearfix"></div>

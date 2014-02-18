@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2014-02-18T11:03:38Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Mon texte à traduire</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Modifier Type Lavage </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Liste des Types Lavages</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>Id facture</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>voiture</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Immatruculation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Prix lavage</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Date reglement</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Immatriculation</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Client</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Marque</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Montant (DH)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Date Réglement</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Date Entrée</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Date Sortie</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Couleur</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
