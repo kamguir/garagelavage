@@ -7,16 +7,16 @@
     <?php endif; ?>
     <table>
         <tfoot>
-        <tr>
-            <td colspan="2">
-                <?php echo $form->renderHiddenFields(false) ?>
-                &nbsp;<a class="btn btn-info" href="<?php echo url_for('client/index') ?>">Retour list</a>
-                <?php if (!$form->getObject()->isNew()): ?>
-                    &nbsp;<a class="btn btn-danger" <?php echo link_to('Delete', 'client/delete?id_client=' . $form->getObject()->getIdClient(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
-                <?php endif; ?>
-                <input class="btn btn-info" type="submit" value="Enregistrer" />
-            </td>
-        </tr>
+            <tr>
+                <td colspan="2">
+                    <?php echo $form->renderHiddenFields(false) ?>
+                    &nbsp;<a class="btn btn-info" href="<?php echo url_for('client/index') ?>">Retour list</a>
+                    <?php if (!$form->getObject()->isNew()): ?>
+                        &nbsp;<a class="btn btn-danger" <?php echo link_to('Delete', 'client/delete?id_client=' . $form->getObject()->getIdClient(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
+                    <?php endif; ?>
+                    <input class="btn btn-info" type="submit" value="Enregistrer" />
+                </td>
+            </tr>
         </tfoot>
         <tbody>
             <tr>
@@ -80,6 +80,15 @@
                     <div class="col-lg-10">
                         <?php echo $form['fonction_client']->renderError(); ?>
                         <?php echo $form['fonction_client']->render(); ?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="textArea" class="col-lg-2 control-label"><?php echo $form['is_employe']->renderLabel(); ?></label>
+                    <div class="col-lg-10">
+                        <?php echo $form['is_employe']->renderError(); ?>
+                        <?php echo $form['is_employe']->render(); ?>
                     </div>
                 </td>
             </tr>

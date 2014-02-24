@@ -77,7 +77,7 @@
             <div class="col-xs-6 col-sm-4 span2" style=" width: 14%;">
                 <div class="well">
                     <button class="btn btn-large btn-block btn-primary" type="button" id="opener">Voitures + lavées</button>
-                    <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
+                    <button class="btn btn-large btn-block btn-primary" type="button" id="StatEmployes">Stat Employés</button>
                     <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
                 </div>
             </div>
@@ -97,6 +97,10 @@
                     $("#dialog").dialog('option', 'title', 'Pie chart 1');
                     $("#dialog").dialog("open");
                 });
+                $("#StatEmployes").click(function() {
+                    $("#dialog").dialog('option', 'title', 'Statestique Employés');
+                    $("#dialog").dialog("open");
+                });
             });
         </script>
 
@@ -114,6 +118,15 @@
         </div>
 
 
+        <!--Highcharts - Pie chart-->
+        <div class="panel panel-success" style="width: 40%;" id="dialog" title="Basic dialog">
+            <div class="panel-heading">
+                <h3 class="panel-title">Voiture les plus lavées, <?php echo date('Y'); ?></h3>
+            </div>
+            <div class="panel-body">
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
         <!--Highcharts - Pie chart-->
         <div class="panel panel-success" style="width: 40%;" id="dialog" title="Basic dialog">
             <div class="panel-heading">

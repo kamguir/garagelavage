@@ -72,6 +72,15 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>
+                                <label for="textArea" class="col-lg-2 control-label"><?php echo $form['is_employe']->renderLabel(); ?></label>
+                                <div class="col-lg-10">
+                                    <?php echo $form['is_employe']->renderError(); ?>
+                                    <?php echo $form['is_employe']->render(); ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td></br>
                             </td>
                         </tr>

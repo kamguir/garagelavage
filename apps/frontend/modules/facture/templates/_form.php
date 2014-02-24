@@ -14,7 +14,7 @@
                     <?php if (!$form->getObject()->isNew()): ?>
                         &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'facture/delete?id_facture=' . $form->getObject()->getIdFacture(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
                     <?php endif; ?>
-                        <a class="btn btn-info" href="<?php echo url_for('facture/listeFacture') ?>">Enregistrer</a>
+                        <input class="btn btn-info" type="submit" value="Enregistrer" />
                 </td>
             </tr>
         </tfoot>
@@ -27,13 +27,13 @@
                     <?php echo $form['id_voiture'] ?>
                 </td>
             </tr>
-      <!--      <tr>
-              <th><?php // echo $form['id_type_lavage']->renderLabel()    ?></th>
-              <td>
-            <?php // echo $form['id_type_lavage']->renderError() ?>
-            <?php // echo $form['id_type_lavage'] ?>
-              </td>
-            </tr>-->
+            <tr>
+                <th><?php echo $form['id_employe']->renderLabel() ?></th>
+                <td>
+                    <?php echo $form['id_employe']->renderError() ?>
+                    <?php echo $form['id_employe'] ?>
+                </td>
+            </tr>
             <tr>
                 <th><?php echo $form['prix_lavage']->renderLabel() ?></th>
                 <td>

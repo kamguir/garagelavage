@@ -1,7 +1,7 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<form action="<?php echo url_for('tapis/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?num_tapis='.$form->getObject()->getNumTapis() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+<form id="formId" action="<?php echo url_for('tapis/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?num_tapis='.$form->getObject()->getNumTapis() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
 <?php if (!$form->getObject()->isNew()): ?>
 <input type="hidden" name="sf_method" value="put" />
 <?php endif; ?>
@@ -14,7 +14,7 @@
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'tapis/delete?num_tapis='.$form->getObject()->getNumTapis(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
           <?php endif; ?>
-          <input class="btn btn-info" type="submit" value="Enregistrer" />
+          <input class="btn btn-info" id="valider" type="submit" value="Enregistrer" />
         </td>
       </tr>
     </tfoot>
@@ -25,6 +25,13 @@
         <td>
           <?php echo $form['taille_tapis']->renderError() ?>
           <?php echo $form['taille_tapis'] ?>
+        </td>
+      </tr>
+      <tr>
+        <th><?php echo $form['prix_mettre_carre']->renderLabel() ?></th>
+        <td>
+          <?php echo $form['prix_mettre_carre']->renderError() ?>
+          <?php echo $form['prix_mettre_carre'] ?>
         </td>
       </tr>
       <tr>
@@ -44,3 +51,17 @@
     </tbody>
   </table>
 </form>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        
+        $('#valider').hide();
+        
+ //gestion affichage boutton
+       $('#formId').find('input').keypress(function(){
+           $('#valider').show();
+       }).change(function(){
+           $('#valider').show();
+       });
+    });
+</script>
