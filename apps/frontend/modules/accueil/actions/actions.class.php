@@ -35,6 +35,10 @@ class accueilActions extends sfActions {
 
         $this->tblTapis = TblTapisQuery::create()
                 ->findOne();
+        
+        $this->tblClients = TblClientQuery::create()
+                ->filterByIsEmploye(1)
+                ->find();
     }
 
     public function executeHh() {

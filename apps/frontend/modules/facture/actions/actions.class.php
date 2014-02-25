@@ -26,6 +26,14 @@ class factureActions extends sfActions {
     public function executeNew(sfWebRequest $request) {
         $idVoiture = $request->getParameter('idVoiture');
         $this->form = new tblFactureForm(null, array('idVoiture'=>$idVoiture));
+        
+        if ($request->isMethod('post')) {
+            $this->form->bind($request->getParameter($this->form->getName()));
+            if ($this->form->isValid()) {
+                $this->form->save();
+                $this->redirect('tapis/index');
+            }
+        }
     }
 
     public function executeCreate(sfWebRequest $request) {
@@ -69,8 +77,8 @@ class factureActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $tblFacture = $form->save();
-
-            $this->redirect('facture/edit?id_facture=' . $tblFacture->getIdFacture());
+//            $this->redirect('facture/edit?id_facture=' . $tblFacture->getIdFacture());
+            $this->redirect('facture/listeFacture');
         }
     }
 
@@ -87,6 +95,7 @@ class factureActions extends sfActions {
         $formFilter = new TblFactureFormFilter();
 
         $tblFactures = TblFactureQuery::create()
+                ->joinTblClient()
                 ->useTblVoitureQuery()
                 ->joinRefMarque()
                 ->endUse()

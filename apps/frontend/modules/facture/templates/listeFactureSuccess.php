@@ -15,6 +15,7 @@
                     <th><?php echo __('Id facture') ?></th>
                     <th><?php echo __('voiture') ?></th>
                     <th><?php echo __('Immatruculation') ?></th>
+                    <th><?php echo __('Employé') ?></th>
                     <th><?php echo __('Prix lavage') ?></th>
                     <th><?php echo __('Date reglement') ?></th>
                 </tr>

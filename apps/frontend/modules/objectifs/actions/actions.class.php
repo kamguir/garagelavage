@@ -11,7 +11,7 @@ class objectifsActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
         $this->tblObjectifs = tblObjectifQuery::create()->find();
-        
+
         $pager = new sfPropelPager('TblObjectif', sfConfig::get('app_max_linge'));
         $pager->setCriteria(TblObjectifQuery::create());
         $pager->setPage($this->getRequestParameter('page', 1));
@@ -64,8 +64,8 @@ class objectifsActions extends sfActions {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
             $tblObjectif = $form->save();
-
-            $this->redirect('objectifs/edit?id_objectif=' . $tblObjectif->getIdObjectif());
+            $this->redirect('objectifs/index');
+//            $this->redirect('objectifs/edit?id_objectif=' . $tblObjectif->getIdObjectif());
         }
     }
 

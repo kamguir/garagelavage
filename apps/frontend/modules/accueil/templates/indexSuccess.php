@@ -12,7 +12,7 @@
                 <table class="table" style="margin-bottom: 2px;">
                     <thead>
                         <tr>
-                            <th>Tableau des Statésiques par :</th>
+                            <th>Tableau des Statésiques par : </th>
                             <th>jour (<?php echo date('d') ?>)</th>
                             <th>Semaine (<?php echo date('W') - 1 ?>)</th>
                             <th>Mois (<?php echo date('m') ?>)</th>
@@ -93,13 +93,21 @@
                         duration: 1000
                     },
                 });
+                $("#dialog2").dialog({
+                    autoOpen: false,
+                    width: 'auto',
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                });
                 $("#opener").click(function() {
                     $("#dialog").dialog('option', 'title', 'Pie chart 1');
                     $("#dialog").dialog("open");
                 });
                 $("#StatEmployes").click(function() {
-                    $("#dialog").dialog('option', 'title', 'Statestique Employés');
-                    $("#dialog").dialog("open");
+                    $("#dialog2").dialog('option', 'title', 'Statestique Employés');
+                    $("#dialog2").dialog("open");
                 });
             });
         </script>
@@ -127,15 +135,16 @@
                 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             </div>
         </div>
-        <!--Highcharts - Pie chart-->
-        <div class="panel panel-success" style="width: 40%;" id="dialog" title="Basic dialog">
+        <!--Highcharts - Column chart-->
+        <div class="panel panel-success" style="width: 40%;" id="dialog2" title="Basic dialog2">
             <div class="panel-heading">
-                <h3 class="panel-title">Voiture les plus lavées, <?php echo date('Y'); ?></h3>
+                <h3 class="panel-title">Statestiques des Employés, <?php echo date('Y'); ?></h3>
             </div>
             <div class="panel-body">
-                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
             </div>
         </div>
+
     </div>
 
     <!--http://demo.tutorialzine.com/2013/01/charts-jquery-ajax/-->
@@ -278,6 +287,47 @@
                         ['mercedes', <?php echo getNbrVoiture(37) ?>],
                         ['peugeot', <?php echo getNbrVoiture(44) ?>],
                         ['toyota', <?php echo getNbrVoiture(61) ?>]
+                    ]
+                }]
+        });
+    });
+    $(function() {
+
+        chart1 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container2',
+                type: 'column',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                    type: 'column',
+                    name: 'Browser share',
+                    data: [
+                        ["<?php echo $tblClients[0]->getNomClient().' '.$tblClients[0]->getPrenomClient() ; ?>" ,
+                        <?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[0]->getIdClient()); ?>
+                        ],
+                        ["<?php echo $tblClients[1]->getNomClient().' '.$tblClients[1]->getPrenomClient(); ?>" ,
+                        <?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[1]->getIdClient()); ?>]
                     ]
                 }]
         });
