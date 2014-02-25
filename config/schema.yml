@@ -49,6 +49,7 @@ propel:
     num_tel: { phpName: NumTel, type: INTEGER, required: false }
     adresse_client: { phpName: AdresseClient, type: VARCHAR, size: '255', required: false }
     fonction_client: { phpName: FonctionClient, type: VARCHAR, size: '255', required: false }
+    is_employe: { phpName: IsEmploye, type: BOOLEAN, size: '1', required: false, defaultValue: false }
     _indexes: { FK_tbl_client: [situation] }
   tbl_depenses:
     _attributes: { phpName: TblDepenses, idMethod: native }
@@ -73,12 +74,12 @@ propel:
     _attributes: { phpName: TblFacture, idMethod: native }
     id_facture: { phpName: IdFacture, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     id_voiture: { phpName: IdVoiture, type: INTEGER, required: false, foreignTable: tbl_voiture, foreignReference: id_voiture }
-    id_type_lavage: { phpName: IdTypeLavage, type: INTEGER, required: false }
+    id_employe: { phpName: IdEmploye, type: INTEGER, required: false, foreignTable: tbl_client, foreignReference: id_client }
     prix_lavage: { phpName: PrixLavage, type: DOUBLE, required: false }
     commentaire_reglement: { phpName: CommentaireReglement, type: VARCHAR, size: '255', required: false }
     date_reglement: { phpName: DateReglement, type: TIMESTAMP, required: false }
     etat: { phpName: Etat, type: BOOLEAN, size: '1', required: false, defaultValue: false }
-    _indexes: { FK_voiture_tbl_reglement: [id_voiture], FK_tbl_facture: [id_type_lavage] }
+    _indexes: { FK_voiture_tbl_reglement: [id_voiture], FK_tbl_facture: [id_employe] }
   tbl_objectif:
     _attributes: { phpName: TblObjectif, idMethod: native }
     id_objectif: { phpName: IdObjectif, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
