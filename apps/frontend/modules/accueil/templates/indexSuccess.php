@@ -1,14 +1,10 @@
-<div class="container" >
+<div class="containesdr"  >
     <?php
     use_helper("getObjectif");
     ?>
     <div class="bs-docs-section">
-        <div class="col-lg-7" >
-            <div class="bs-example">
-                <p>
-                </p>
-            </div>
-            <div class="bsa well" style="margin-top: -10px;">
+        <div class="col-xs-9" >
+            <div class="bsa well">
                 <table class="table" style="margin-bottom: 2px;">
                     <thead>
                         <tr>
@@ -74,7 +70,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6 col-sm-4 span2" style=" width: 14%;">
+            <div class="col-xs-6 col-sm-4 span2">
                 <div class="well">
                     <button class="btn btn-large btn-block btn-primary" type="button" id="opener">Voitures + lavées</button>
                     <button class="btn btn-large btn-block btn-primary" type="button" id="StatEmployes">Stat Employés</button>
@@ -112,20 +108,6 @@
             });
         </script>
 
-        <div class="col-lg-9" >
-            <!--Highcharts - Basic column-->
-            <div class="panel panel-success" >
-                <div class="panel-heading">
-                    <h3 class="panel-title">Statéstiques année ( <strong><?php echo date('Y'); ?></strong> )</h3>
-                </div>
-
-                <div class="panel-body" style="padding: 0px;">
-                    <div id="resultat_filtre" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-
-
         <!--Highcharts - Pie chart-->
         <div class="panel panel-success" style="width: 40%;" id="dialog" title="Basic dialog">
             <div class="panel-heading">
@@ -147,96 +129,34 @@
 
     </div>
 
+    <div class="clear"></div>
+    <!---Début tabs pour les tableaux de Réporting----->
+    <div id="content">
+        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+            <li class="active"><a href="#ChiffreAffaireParCharges" data-toggle="tab">CA / Charges</a></li>
+            <li><a href="#ObjectifFixRealise" data-toggle="tab">Objectif Fix/Réalisé</a></li>
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+            <div class="tab-pane active" id="ChiffreAffaireParCharges">
+                <?php include_partial("chiffreAffaireParCharges", array('objectifsFixes' => $objectifsFixes)); ?>
+            </div>
+
+            <div class="tab-pane" id="ObjectifFixRealise">
+                <?php include_partial("objectifFixRealise", array('tblFactures' => $tblFactures)); ?>
+            </div>
+        </div>
+    </div>
+<!--    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('#tabs').tab();
+        });
+    </script>-->
+    <!---Fin tabs pour les tableaux de Réporting----->
+
     <!--http://demo.tutorialzine.com/2013/01/charts-jquery-ajax/-->
 </div>
 
-<!--Highcharts - Basic column-->
-<script>
 
-    $(function() {
-        chart1 = new Highcharts.Chart({
-            chart: {
-                renderTo: 'resultat_filtre',
-                type: 'column'
-            },
-            title: {
-                text: 'Nombre de voitures par mois'
-            },
-            subtitle: {
-                text: ''
-            },
-            xAxis: {
-                categories: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aôut', 'September', 'October', 'November', 'December'],
-                title: {
-                    text: null
-                }
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'indicateurs',
-                    align: 'high'
-                },
-                labels: {
-                    overflow: 'justify'
-                }
-            },
-            tooltip: {
-                valueSuffix: ' '
-            },
-            plotOptions: {
-                bar: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -20,
-                y: 100,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: '#FFFFFF',
-                shadow: true
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                    name: 'Objectif Fixe (nbr)',
-                    data: [<?php echo $objectifsFixes->getObjectifFixByDate('01') ?>, <?php echo $objectifsFixes->getObjectifFixByDate('02') ?>, <?php echo $objectifsFixes->getObjectifFixByDate('03') ?>
-                        , <?php echo $objectifsFixes->getObjectifFixByDate('04') ?>, <?php echo $objectifsFixes->getObjectifFixByDate('05') ?>,<?php echo $objectifsFixes->getObjectifFixByDate('06') ?>
-                        , <?php echo $objectifsFixes->getObjectifFixByDate('07') ?>, <?php echo $objectifsFixes->getObjectifFixByDate('08') ?>,<?php echo $objectifsFixes->getObjectifFixByDate('09') ?>
-                        , <?php echo $objectifsFixes->getObjectifFixByDate('10') ?>, <?php echo $objectifsFixes->getObjectifFixByDate('11') ?>,<?php echo $objectifsFixes->getObjectifFixByDate('12') ?>]
-                }, {
-                    name: 'Objectif Réalisé (nbr)',
-                    data: [<?php echo $objectifsFixes->getObjectifRealiseByDate('01') ?>, <?php echo $objectifsFixes->getObjectifRealiseByDate('02') ?>, <?php echo $objectifsFixes->getObjectifRealiseByDate('03') ?>
-                        , <?php echo $objectifsFixes->getObjectifRealiseByDate('04') ?>, <?php echo $objectifsFixes->getObjectifRealiseByDate('05') ?>,<?php echo $objectifsFixes->getObjectifRealiseByDate('06') ?>
-                        , <?php echo $objectifsFixes->getObjectifRealiseByDate('07') ?>, <?php echo $objectifsFixes->getObjectifRealiseByDate('08') ?>,<?php echo $objectifsFixes->getObjectifRealiseByDate('09') ?>
-                        , <?php echo $objectifsFixes->getObjectifRealiseByDate('10') ?>, <?php echo $objectifsFixes->getObjectifRealiseByDate('11') ?>,<?php echo $objectifsFixes->getObjectifRealiseByDate('12') ?>]
-                }, {
-                    name: 'Montant Dépenses (dh)',
-                    data: [<?php echo getMontantDepenses('01'); ?>, <?php echo getMontantDepenses('02'); ?>, <?php echo getMontantDepenses('03'); ?>
-                        , <?php echo getMontantDepenses('04'); ?>, <?php echo getMontantDepenses('05'); ?>,<?php echo getMontantDepenses('06'); ?>
-                        , <?php echo getMontantDepenses('07'); ?>, <?php echo getMontantDepenses('08'); ?>,<?php echo getMontantDepenses('09'); ?>
-                        , <?php echo getMontantDepenses('10'); ?>, <?php echo getMontantDepenses('11'); ?>,<?php echo getMontantDepenses('12'); ?>]
-                }, {
-                    name: 'Chiffre d\'affaire (dh)',
-                    data: [<?php echo $tblFactures->getMontantReglement('01'); ?>, <?php echo $tblFactures->getMontantReglement('02'); ?>, <?php echo $tblFactures->getMontantReglement('03'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('04'); ?>, <?php echo $tblFactures->getMontantReglement('05'); ?>,<?php echo $tblFactures->getMontantReglement('06'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('07'); ?>, <?php echo $tblFactures->getMontantReglement('08'); ?>,<?php echo $tblFactures->getMontantReglement('09'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('10'); ?>, <?php echo $tblFactures->getMontantReglement('11'); ?>,<?php echo $tblFactures->getMontantReglement('12'); ?>]
-
-                }
-            ]
-        });
-    });
-
-
-</script>
 
 <script>
     $(function() {
@@ -323,11 +243,11 @@
                     type: 'column',
                     name: 'Browser share',
                     data: [
-                        ["<?php echo $tblClients[0]->getNomClient().' '.$tblClients[0]->getPrenomClient() ; ?>" ,
-                        <?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[0]->getIdClient()); ?>
+                        ["<?php echo $tblClients[0]->getNomClient() . ' ' . $tblClients[0]->getPrenomClient(); ?>",
+<?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[0]->getIdClient()); ?>
                         ],
-                        ["<?php echo $tblClients[1]->getNomClient().' '.$tblClients[1]->getPrenomClient(); ?>" ,
-                        <?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[1]->getIdClient()); ?>]
+                        ["<?php echo $tblClients[1]->getNomClient() . ' ' . $tblClients[1]->getPrenomClient(); ?>",
+<?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[1]->getIdClient()); ?>]
                     ]
                 }]
         });

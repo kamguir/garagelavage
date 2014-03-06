@@ -36,6 +36,9 @@ all:
     use_database:           true
     i18n:                   on
     standard_helpers: [Partial, Cache, I18N]
+    enabled_modules:
+      - auth
+      - default
   .actions:
     #page not found
     error_404_module:       errors     # module "errors"
@@ -43,3 +46,6 @@ all:
     #403 credential required
     secure_module:          errors     # module "errors"
     secure_action:          error403   # action "executeError403"    
+    # index = Authentification
+    login_module: auth
+    login_action: login

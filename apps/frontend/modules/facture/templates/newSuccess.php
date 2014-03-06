@@ -69,18 +69,18 @@
                 $('#result').css('font-weight', 'bold');
                 $('#result').text('Montant Modifié:' + obj.val());
             },
-            mouseover: function() {
-                var obj = $(this);
-                $('#result').css("color", 'red');
-                $('#result').css('font-weight', 'bold');
-                $('#result').text('Montant Modifié:' + obj.val());
-            },
-            mouseout: function() {
-                var obj = $(this);
-                $('#result').css("color", 'red');
-                $('#result').css('font-weight', 'bold');
-                $('#result').text('Montant Modifié:' + obj.val());
-            }
+//            mouseover: function() {
+//                var obj = $(this);
+//                $('#result').css("color", 'red');
+//                $('#result').css('font-weight', 'bold');
+//                $('#result').text('Montant Modifié:' + obj.val());
+//            },
+//            mouseout: function() {
+//                var obj = $(this);
+//                $('#result').css("color", 'red');
+//                $('#result').css('font-weight', 'bold');
+//                $('#result').text('Montant Modifié:' + obj.val());
+//            }
         });
     });
 </script>

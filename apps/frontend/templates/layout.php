@@ -11,7 +11,7 @@
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
     </head>
-    <body style="padding-top: 80px;">
+    <body style="padding-top: 5%;">
         <!--changer la langues--> 
         <?php // include_component('language', 'language') ?>
 
@@ -21,7 +21,7 @@
                     <p class="logo"><a href="<?php echo url_for('@homepage') ?>"></a></p>
                 </div>
                 <div class="navbar-header">
-                    <a href="<?php echo url_for('@homepage') ?>" class="navbar-brand">Lavage Ayoub</a>
+                    <a href="<?php echo url_for('@homepage') ?>" class="navbar-brand"><?php echo TblParamPortailPeer::getValueByName('NOM_PROJET') ?></a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -29,7 +29,7 @@
                     </button>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar-main">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" style="margin-left: 5%;">
                         <li>
                             <a href="<?php echo url_for('@homepage') ?>">Accueil</a>
                         </li>
@@ -37,46 +37,53 @@
                             <a href="<?php echo url_for('@suiviVoitures') ?>">Suivi</a>
                         </li>
                         <li>
-                            <!--<a href="../help/">Facturation</a>-->
-                        </li>
-                        <li>
                             <a href="<?php echo url_for('@administrationpage') ?>">Administration</a>
-                        </li>
-                        <li>
-                            <!--<a href="<?php // echo url_for('@logVoitures')      ?>">Log</a>-->
                         </li>
                         <li>
                             <a href="<?php echo url_for('accueil/alerts') ?>">Alerts!</a>
                         </li>
+                        <li>
+                            <a href="<?php echo url_for('auth/logout') ?>" class="label-danger">Se deconnecter</a>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li style="color: #fff;">Version 0.1.4</li>
+                        <li style="color: #fff;">Version <?php echo TblParamPortailPeer::getValueByName('VERSION') ?></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <!--col-xs-6 col-sm-3-->
-            <div class="col-md-2 well" style="margin-left: 4%; width: 14%; position: fixed;" >
-            <!--<div class="btn-group-vertical well" style="margin-left: 4%; width: 14%; position: fixed;" >-->
-                    <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary" style="padding: 3px; margin-bottom: 5px;width: 100%;" ><i class="icon-plus-sign icon-white"></i><p class="logoClient" ></p>Nouveau Client</a>
-                    <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
-                    <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouveau Tapis</a>
-                    <a href="<?php echo url_for('facture/listeFacture') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
-                    <a href="<?php echo url_for('ticket/imprimerTicket') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoPrint" ></p>Imprimer Ticket</a>
-                    <a href="<?php echo url_for('objectifs/newObjectif') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoObjectif" ></p>Gestion Objectifs</a>
-                    <a href="<?php echo url_for('depenses/newDepenses') ?>" class="btn btn-primary" style="padding: 3px;margin-bottom: 5px;width: 100%;"><i class="icon-plus-sign icon-white"></i><p class="logoDepences" ></p>Gestion Dépences</a>
-            </div>
-            <div class="col-md-10" style="float: right;">
-                <?php echo $sf_content ?>
-            </div>
-            <div class="clearfix"></div>
-            <div id="footer" style="background-color: #f5f5f5; height: 40px; text-align: center;">
-                <div class="container" >
-                    <p class="muted credit" style="margin-top: 8px;">Tous droits réservés. Copyright © 2013 <small>--by Kamguir--</small></p>
+        <div class="container" >
+            <div class="row">
+                <!--col-xs-6 col-sm-3-->
+                <div class="col-xs-6 col-md-2 well" >
+                    <!--<div class="btn-group-vertical well" style="margin-left: 4%; width: 14%; position: fixed;" >-->
+                    <a href="<?php echo url_for('facture/new') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
+                    <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
+                    <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouveau Tapis</a>
+                    <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary leftBar"<i class="icon-plus-sign icon-white"></i><p class="logoClient" ></p>Nouveau Client</a>
+                    <!--<a href="<?php echo url_for('ticket/imprimerTicket') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoPrint" ></p>Imprimer Ticket</a>-->
+                    <a href="<?php echo url_for('objectifs/newObjectif') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoObjectif" ></p>Gestion Objectifs</a>
+                    <a href="<?php echo url_for('depenses/newDepenses') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoDepences" ></p>Gestion Dépences</a>
                 </div>
+                <div class="col-xs-12 col-md-9">
+                    <?php echo $sf_content ?>
+                </div>
+            </div> 
+        </div>
+
+        <div class="clearfix"></div>
+        <div id="footer" style="background-color: #f5f5f5; height: 40px; text-align: center;">
+            <div class="container" >
+                <p class="muted credit" style="margin-top: 8px;">Tous droits réservés. Copyright © 2013 <small>--by Kamguir--</small></p>
             </div>
         </div>
     </body>
 </html>
+<style type="text/css">
+    .leftBar {
+        padding: 2px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+</style>

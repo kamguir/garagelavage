@@ -4,3 +4,7 @@
 # default values
 all:
   max_linge: 10
+  sfAuth:
+    modelUser: TblUser
+    modelUserFilter: findOneByAuthentification
+    redirectSuccess: '@homepage'

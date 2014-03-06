@@ -26,10 +26,16 @@
                             <span>objectif non atteint !</span>
                         </div>
                     </div>
-                    <?php
+                <?php
+                } else {
+                    $v = 1;
                 }
             }
-            ?>
+            if ($v == 1) {
+                ?>
+                <div class="alert alert-success">pas d'alerte, Systeme OK</div>
+<?php }
+?>
         </div>
     </div>
 </div>

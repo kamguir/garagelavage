@@ -14,7 +14,7 @@
                     <?php if (!$form->getObject()->isNew()): ?>
                         &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'facture/delete?id_facture=' . $form->getObject()->getIdFacture(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
                     <?php endif; ?>
-                        <input class="btn btn-info" type="submit" value="Enregistrer" />
+                    <input class="btn btn-info" type="submit" value="Enregistrer" />
                 </td>
             </tr>
         </tfoot>
@@ -47,14 +47,6 @@
                     <span id="result"></span>
                 </td>
             </tr>
-            </tr>
-            <tr>
-                <th><?php echo $form['commentaire_reglement']->renderLabel() ?></th>
-                <td>
-                    <?php echo $form['commentaire_reglement']->renderError() ?>
-                    <?php echo $form['commentaire_reglement'] ?>
-                </td>
-            </tr>
             <tr>
                 <th><?php echo $form['date_reglement']->renderLabel() ?></th>
                 <td>
@@ -74,6 +66,13 @@
                 <td>
                     <?php echo $form['etat']->renderError() ?>
                     <?php echo $form['etat'] ?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $form['commentaire_reglement']->renderLabel() ?></th>
+                <td>
+                    <?php echo $form['commentaire_reglement']->renderError() ?>
+                    <?php echo $form['commentaire_reglement'] ?>
                 </td>
             </tr>
             <tr>

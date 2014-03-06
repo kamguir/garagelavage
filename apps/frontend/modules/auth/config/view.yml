@@ -1,0 +1,10 @@
+loginSuccess:
+  stylesheets:
+    - bootstrap/bootstrap-responsive.css
+    - bootstrap/bootstrap-responsive.min.css
+    - bootstrap/bootstrap.css
+    - bootstrap/bootstrap.min.css
+    - bootstrap/signin.css
+    
+  layout:         authentification
+  
