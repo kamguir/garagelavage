@@ -16,28 +16,43 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <?php ($nbrVoitures) ? $nbrVoitureParJour = $nbrVoitures->getNbrVoituresParDate(date('d')) : $nbrVoitureParJour = 0; ?>
+                            <?php ($nbrVoitures) ? $nbrVoitureParWeek = $nbrVoitures->getNbrVoituresParWeek() : $nbrVoitureParWeek = 0; ?>
+                            <?php ($nbrVoitures) ? $nbrVoitureParMois = $nbrVoitures->getNbrVoituresParDate(date('m')) : $nbrVoitureParMois = 0; ?>
                             <td>Nbr Voiture :</td>
-                            <td><span class="badge"><?php echo $nbrVoitures->getNbrVoituresParDate(date('d')); ?></span></td>
-                            <td><span class="badge"><?php echo $nbrVoitures->getNbrVoituresParWeek(); ?></span></td>
-                            <td><span class="badge"><?php echo $nbrVoitures->getNbrVoituresParDate(date('m')); ?></span></td>
+                            <td><span class="badge"><?php echo $nbrVoitureParJour; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrVoitureParWeek; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrVoitureParMois; ?></span></td>
                         </tr>
                         <tr>
+                            <?php ($tblTapis) ? $nbrTapisParJour = $tblTapis->getNbrTapisParDate(date('d')) : $nbrTapisParJour = 0; ?>
+                            <?php ($tblTapis) ? $nbrTapisParWeek = $tblTapis->getNbrTapisParWeek() : $nbrTapisParWeek = 0; ?>
+                            <?php ($tblTapis) ? $nbrTapisParMois = $tblTapis->getNbrTapisParDate(date('m')) : $nbrTapisParMois = 0; ?>
                             <td>Nbr Tapies :</td>
-                            <td><span class="badge"><?php echo $tblTapis->getNbrTapisParDate(date('d')); ?></span></td>
-                            <td><span class="badge"><?php echo $tblTapis->getNbrTapisParWeek(); ?></span></td>
-                            <td><span class="badge"><?php echo $tblTapis->getNbrTapisParDate(date('m')); ?></span></td>
+                            <td><span class="badge"><?php echo $nbrTapisParJour; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrTapisParWeek; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrTapisParMois; ?></span></td>
                         </tr>
                         <tr>
+                            <?php ($tblTapis) ? $montantTapisParJour = $tblTapis->getMontantTotalTapisParDate(date('d')) : $montantTapisParJour = 0; ?>
+                            <?php ($tblTapis) ? $montantTapisParWeek = $tblTapis->getMontantTotalParWeek() : $montantTapisParWeek = 0; ?>
+                            <?php ($tblTapis) ? $montantTapisParMois = $tblTapis->getMontantTotalTapisParDate(date('m')) : $montantTapisParMois = 0; ?>
+                            <?php ($tblFactures) ? $montantTotalParJour = $tblFactures->getMontantTotalParDate(date('d')) : $montantTotalParJour = 0; ?>
+                            <?php ($tblFactures) ? $montantTotalParWeek = $tblFactures->getMontantTotalParWeek() : $montantTotalParWeek = 0; ?>
+                            <?php ($tblFactures) ? $montantTotalParMois = $tblFactures->getMontantTotalParDate(date('m')) : $montantTotalParMois = 0; ?>
                             <td>montant Total (DH) :</td>
-                            <td><span class="badge"><?php echo $montanTotalJour = $tblFactures->getMontantTotalParDate(date('d')) + $tblTapis->getMontantTotalTapisParDate(date('d')); ?></span></td>
-                            <td><span class="badge"><?php echo $montanTotalSemaine = $tblFactures->getMontantTotalParWeek(); ?></span></td>
-                            <td><span class="badge"><?php echo $montanTotalMois = $tblFactures->getMontantTotalParDate(date('m')) + $tblTapis->getMontantTotalTapisParDate(date('m')); ?></span></td>
+                            <td><span class="badge"><?php echo $montanTotalJour = $montantTotalParJour + $montantTapisParJour; ?></span></td>
+                            <td><span class="badge"><?php echo $montanTotalSemaine = $montantTotalParWeek + $montantTapisParWeek; ?></span></td>
+                            <td><span class="badge"><?php echo $montanTotalMois = $montantTotalParMois + $montantTapisParMois; ?></span></td>
                         </tr>
                         <tr>
+                            <?php ($tblFactures) ? $depensesTotalParJour = $tblFactures->getDepensesTotalParDate(date('d')) : $depensesTotalParJour = 0; ?>
+                            <?php ($tblFactures) ? $depensesTotalParMois = $tblFactures->getDepensesTotalParDate(date('m')) : $depensesTotalParMois = 0; ?>
+                            <?php ($tblFactures) ? $depensesTotalParWeek = $tblFactures->getDepensesTotalParWeek() : $depensesTotalParWeek = 0; ?>
                             <td>Dépenses Total (DH) :</td>
-                            <td><span class="badge"><?php echo $depensesTotalJour = $tblFactures->getDepensesTotalParDate(date('d')); ?></span></td>
-                            <td><span class="badge"><?php echo $depensesSemaine = $tblFactures->getDepensesTotalParWeek(); ?></span></td>
-                            <td><span class="badge"><?php echo $depensesMois = $tblFactures->getDepensesTotalParDate(date('m')); ?></span></td>
+                            <td><span class="badge"><?php echo $depensesTotalJour = $depensesTotalParJour; ?></span></td>
+                            <td><span class="badge"><?php echo $depensesSemaine = $depensesTotalParWeek; ?></span></td>
+                            <td><span class="badge"><?php echo $depensesMois = $depensesTotalParMois; ?></span></td>
                         </tr>
                         <tr style="font-family: monospace;background-color: lightgrey;">
                             <td>GAIN NET :</td>
@@ -74,7 +89,6 @@
                 <div class="well">
                     <button class="btn btn-large btn-block btn-primary" type="button" id="opener">Voitures + lavées</button>
                     <button class="btn btn-large btn-block btn-primary" type="button" id="StatEmployes">Stat Employés</button>
-                    <button class="btn btn-large btn-block btn-primary" type="button">Block level button</button>
                 </div>
             </div>
         </div>
@@ -109,12 +123,12 @@
         </script>
 
         <!--Highcharts - Pie chart-->
-        <div class="panel panel-success" style="width: 40%;" id="dialog" title="Basic dialog">
+        <div class="panel panel-success" style="width: 60%;" id="dialog" title="Basic dialog">
             <div class="panel-heading">
                 <h3 class="panel-title">Voiture les plus lavées, <?php echo date('Y'); ?></h3>
             </div>
             <div class="panel-body">
-                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                <div id="container" style="min-width: 40%; height: 400px; margin: 0 auto"></div>
             </div>
         </div>
         <!--Highcharts - Column chart-->
@@ -123,7 +137,7 @@
                 <h3 class="panel-title">Statestiques des Employés, <?php echo date('Y'); ?></h3>
             </div>
             <div class="panel-body">
-                <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                <div id="container2" style="min-width: 40%; height: 400px; margin: 0 auto"></div>
             </div>
         </div>
 
@@ -138,11 +152,11 @@
         </ul>
         <div id="my-tab-content" class="tab-content">
             <div class="tab-pane active" id="ChiffreAffaireParCharges">
-                <?php include_partial("chiffreAffaireParCharges", array('objectifsFixes' => $objectifsFixes)); ?>
+                <?php include_partial("chiffreAffaireParCharges", array('tblFactures' => $tblFactures)); ?>
             </div>
 
             <div class="tab-pane" id="ObjectifFixRealise">
-                <?php include_partial("objectifFixRealise", array('tblFactures' => $tblFactures)); ?>
+                <?php include_partial("objectifFixRealise", array('objectifsFixes' => $objectifsFixes)); ?>
             </div>
         </div>
     </div>
@@ -156,11 +170,22 @@
     <!--http://demo.tutorialzine.com/2013/01/charts-jquery-ajax/-->
 </div>
 
-
+<?php
+// initialiser les variables de tbl_facture si  vide
+$nbrVoitureParEmploye = array();
+$nomPrenomClient = array();
+foreach ($tblClients as $key => $value) {
+    $nomPrenomClient[$key] = $value->getNomClient() . ' ,' . $value->getPrenomClient();
+    if ($tblFactures) {
+        $nbrVoitureParEmploye[$key] = $tblFactures->getNrbVoituresparEmploye($value->getIdClient());
+    } else {
+        $nbrVoitureParEmploye[$key] = 0;
+    }
+}
+?>
 
 <script>
     $(function() {
-
         chart1 = new Highcharts.Chart({
             chart: {
                 renderTo: 'container',
@@ -243,11 +268,11 @@
                     type: 'column',
                     name: 'Browser share',
                     data: [
-                        ["<?php echo $tblClients[0]->getNomClient() . ' ' . $tblClients[0]->getPrenomClient(); ?>",
-<?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[0]->getIdClient()); ?>
+                        ["<?php echo $nomPrenomClient[0]; ?>",
+<?php echo $nbrVoitureParEmploye[0]; ?>
                         ],
-                        ["<?php echo $tblClients[1]->getNomClient() . ' ' . $tblClients[1]->getPrenomClient(); ?>",
-<?php echo $tblFactures->getNrbVoituresparEmploye($tblClients[1]->getIdClient()); ?>]
+                        ["<?php echo $nomPrenomClient[1]; ?>",
+<?php echo $nbrVoitureParEmploye[1]; ?>]
                     ]
                 }]
         });

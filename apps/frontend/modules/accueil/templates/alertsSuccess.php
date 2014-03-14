@@ -16,26 +16,32 @@
                 '11' => 'November',
                 '12' => 'December'
             );
+            if ($objectifsFixes) {
             foreach ($months as $key => $value) {
-                if ($objectifsFixes->getObjectifFixByDate($key) > $objectifsFixes->getObjectifRealiseByDate($key)) {
-                    ?>
-                    <div class="bs-example">
-                        <div class="alert alert-dismissable alert-warning">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>Warning! mois ( <?php echo $objectifsFixes->get_month_name($key); ?> )</strong>
-                            <span>objectif non atteint !</span>
+                
+                    if ($objectifsFixes->getObjectifFixByDate($key) > $objectifsFixes->getObjectifRealiseByDate($key)) {
+                        ?>
+                        <div class="bs-example">
+                            <div class="alert alert-dismissable alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Warning! mois ( <?php echo $objectifsFixes->get_month_name($key); ?> )</strong>
+                                <span>objectif non atteint !</span>
+                            </div>
                         </div>
-                    </div>
-                <?php
-                } else {
-                    $v = 1;
+                        <?php
+                    }
                 }
             }
-            if ($v == 1) {
-                ?>
-                <div class="alert alert-success">pas d'alerte, Systeme OK</div>
-<?php }
-?>
+            else {
+                    ?>
+                    <div class = "bs-example">
+
+                        <span>Le Système n'a detecté aucune Alerte :) </span>
+                    </div>
+
+                    <?php
+                }
+               ?>
         </div>
     </div>
 </div>

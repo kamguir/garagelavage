@@ -1,6 +1,3 @@
-<?php
-use_helper("getObjectif");
-?>
 <div class="col-lg-12" >
     <!--Highcharts - Basic column-->
     <div class="panel panel-success" >
@@ -8,22 +5,36 @@ use_helper("getObjectif");
             <h3 class="panel-title">Statéstiques année ( <strong><?php echo date('Y'); ?></strong> )</h3>
         </div>
         <div class="panel-body" style="padding: 0px;">
-            <div id="resultat_filtre2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            <div id="resultat_filtre" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
         </div>
     </div>
 </div>
+<?php
+// initialiser les variables de tbl_objectif si  vide
+$tblObjectifsFixesByDate = array();
+$tblObjectifsRealiseByDate = array();
+for ($i = 1; $i <= 12; $i++) {
+    if ($objectifsFixes) {
+        $tblObjectifsFixesByDate[$i] = $objectifsFixes->getObjectifFixByDate($i);
+        $tblObjectifsRealiseByDate[$i] = $objectifsFixes->getObjectifRealiseByDate($i);
+    } else {
+        $tblObjectifsFixesByDate[$i] = 0;
+        $tblObjectifsRealiseByDate[$i] = 0;
+    }
+}
 
+?>
 <!--Highcharts - Basic column-->
 <script>
 
     $(function() {
         chart1 = new Highcharts.Chart({
             chart: {
-                renderTo: 'resultat_filtre2',
+                renderTo: 'resultat_filtre',
                 type: 'column'
             },
             title: {
-                text: 'Nombre de voitures par mois'
+                text: 'Objectif fix / Objectif Réalisé'
             },
             subtitle: {
                 text: ''
@@ -69,18 +80,17 @@ use_helper("getObjectif");
                 enabled: false
             },
             series: [{
-                    name: 'Montant Dépenses (dh)',
-                    data: [<?php echo getMontantDepenses('01'); ?>, <?php echo getMontantDepenses('02'); ?>, <?php echo getMontantDepenses('03'); ?>
-                        , <?php echo getMontantDepenses('04'); ?>, <?php echo getMontantDepenses('05'); ?>,<?php echo getMontantDepenses('06'); ?>
-                        , <?php echo getMontantDepenses('07'); ?>, <?php echo getMontantDepenses('08'); ?>,<?php echo getMontantDepenses('09'); ?>
-                        , <?php echo getMontantDepenses('10'); ?>, <?php echo getMontantDepenses('11'); ?>,<?php echo getMontantDepenses('12'); ?>]
+                    name: 'Objectif Fixe (nbr)',
+                    data: [<?php echo $tblObjectifsFixesByDate[1] ?>, <?php echo $tblObjectifsFixesByDate[2] ?>, <?php echo $tblObjectifsFixesByDate[3] ?>
+                        , <?php echo $tblObjectifsFixesByDate[4] ?>, <?php echo $tblObjectifsFixesByDate[5] ?>,<?php echo $tblObjectifsFixesByDate[6] ?>
+                        , <?php echo $tblObjectifsFixesByDate[7] ?>, <?php echo $tblObjectifsFixesByDate[8] ?>,<?php echo $tblObjectifsFixesByDate[9] ?>
+                        , <?php echo $tblObjectifsFixesByDate[10] ?>, <?php echo $tblObjectifsFixesByDate[11] ?>,<?php echo $tblObjectifsFixesByDate[12] ?>]
                 }, {
-                    name: 'Chiffre d\'affaire (dh)',
-                    data: [<?php echo $tblFactures->getMontantReglement('01'); ?>, <?php echo $tblFactures->getMontantReglement('02'); ?>, <?php echo $tblFactures->getMontantReglement('03'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('04'); ?>, <?php echo $tblFactures->getMontantReglement('05'); ?>,<?php echo $tblFactures->getMontantReglement('06'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('07'); ?>, <?php echo $tblFactures->getMontantReglement('08'); ?>,<?php echo $tblFactures->getMontantReglement('09'); ?>
-                        , <?php echo $tblFactures->getMontantReglement('10'); ?>, <?php echo $tblFactures->getMontantReglement('11'); ?>,<?php echo $tblFactures->getMontantReglement('12'); ?>]
-
+                    name: 'Objectif Réalisé (nbr)',
+                    data: [<?php echo $tblObjectifsRealiseByDate[1] ?>, <?php echo $tblObjectifsRealiseByDate[2] ?>, <?php echo $tblObjectifsRealiseByDate[3] ?>
+                        , <?php echo $tblObjectifsRealiseByDate[4] ?>, <?php echo $tblObjectifsRealiseByDate[5] ?>,<?php echo $tblObjectifsRealiseByDate[6] ?>
+                        , <?php echo $tblObjectifsRealiseByDate[7] ?>, <?php echo $tblObjectifsRealiseByDate[8] ?>,<?php echo $tblObjectifsRealiseByDate[9] ?>
+                        , <?php echo $tblObjectifsRealiseByDate[10] ?>, <?php echo $tblObjectifsRealiseByDate[11] ?>,<?php echo $tblObjectifsRealiseByDate[12] ?>]
                 }
             ]
         });
