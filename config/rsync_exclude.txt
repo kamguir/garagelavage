@@ -13,3 +13,18 @@ _darcs
 .monotone
 .svn
 CVS
+
+# SCM files
+.arch-params
+.bzr
+_darcs
+.git
+.hg
+.monotone
+.svn
+CVS
+
+#karimProjet
+
+databases.yml
+/bd_garage_lavage.sql

@@ -20,6 +20,7 @@ abstract class BaseTblClientFormFilter extends BaseFormFilterPropel
       'num_tel'         => new sfWidgetFormFilterInput(),
       'adresse_client'  => new sfWidgetFormFilterInput(),
       'fonction_client' => new sfWidgetFormFilterInput(),
+      'is_employe'      => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -31,6 +32,7 @@ abstract class BaseTblClientFormFilter extends BaseFormFilterPropel
       'num_tel'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'adresse_client'  => new sfValidatorPass(array('required' => false)),
       'fonction_client' => new sfValidatorPass(array('required' => false)),
+      'is_employe'      => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('tbl_client_filters[%s]');
@@ -57,6 +59,7 @@ abstract class BaseTblClientFormFilter extends BaseFormFilterPropel
       'num_tel'         => 'Number',
       'adresse_client'  => 'Text',
       'fonction_client' => 'Text',
+      'is_employe'      => 'Boolean',
     );
   }
 }

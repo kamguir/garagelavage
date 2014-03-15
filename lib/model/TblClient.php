@@ -21,6 +21,10 @@ class TblClient extends BaseTblClient {
         return $this->getNomClient() . ' ' . $this->getPrenomClient();
     }
 
+    public function getLibelle() {
+        return $this->getNomClient() . ' ' . $this->getPrenomClient();
+    }
+    
 }
 
 // TblClient

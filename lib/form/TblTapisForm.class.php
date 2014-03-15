@@ -24,7 +24,7 @@ class TblTapisForm extends BaseTblTapisForm {
 //        $this->getWidget('date_lavage_tapis')->setAttribute('data-format', 'yyyy-MM-dd hh:mm:ss');
         
         $this->setWidget('taille_tapis', new sfWidgetFormInputText(array(), array("id" => 'tailleTapis')));
-        $this->setValidator('taille_tapis', new sfValidatorString());
+        $this->setValidator('taille_tapis', new sfValidatorString(array('required' => false)));
 
         $this->setWidget('prix_mettre_carre', new sfWidgetFormInputText(array(), array("id" => 'prixMettreCarre')));
         $this->setValidator('prix_mettre_carre', new sfValidatorString());

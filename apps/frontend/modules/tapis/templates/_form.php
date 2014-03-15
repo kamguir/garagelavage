@@ -55,13 +55,13 @@
 <script type="text/javascript">
     $(document).ready(function(){
         
-        $('#valider').hide();
-        
- //gestion affichage boutton
-       $('#formId').find('input').keypress(function(){
-           $('#valider').show();
-       }).change(function(){
-           $('#valider').show();
-       });
+//        $('#valider').hide();
+//        
+// //gestion affichage boutton
+//       $('#formId').find('input').keypress(function(){
+//           $('#valider').show();
+//       }).change(function(){
+//           $('#valider').show();
+//       });
     });
 </script>

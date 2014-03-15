@@ -9,7 +9,7 @@ class ProjectConfiguration extends sfProjectConfiguration {
         sfConfig::set('sf_phing_path', sfConfig::get('sf_root_dir') . '/lib/vendor/phing');
         sfConfig::set('sf_propel_path', sfConfig::get('sf_root_dir') . '/lib/vendor/propel');
         sfConfig::set('sf_propel_generator_path', sfConfig::get('sf_root_dir') . '/lib/vendor/propel/generator/lib');
-        $this->enablePlugins(array('sfPropelORMPlugin','orcaWidgetPlugin', 'sfFormExtraPlugin'));
+        $this->enablePlugins(array('sfPropelORMPlugin','orcaWidgetPlugin', 'sfFormExtraPlugin','sfAuthPlugin'));
     }
 
 }

@@ -95,6 +95,10 @@ suiviVoitures:
   url: /voiture/index
   param: { module: voiture, action: index }
   
+listeFactures:
+  url: /facture/listeFacture
+  param: { module: facture, action: listeFacture }
+  
 administrationpage:
   url:   /admin
   param: { module: admin, action: index }    

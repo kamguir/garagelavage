@@ -12,6 +12,7 @@
                             <th>jour (<?php echo date('d') ?>)</th>
                             <th>Semaine (<?php echo date('W') - 1 ?>)</th>
                             <th>Mois (<?php echo date('m') ?>)</th>
+                            <th>Année (<?php echo date('Y') ?>)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,40 +20,49 @@
                             <?php ($nbrVoitures) ? $nbrVoitureParJour = $nbrVoitures->getNbrVoituresParDate(date('d')) : $nbrVoitureParJour = 0; ?>
                             <?php ($nbrVoitures) ? $nbrVoitureParWeek = $nbrVoitures->getNbrVoituresParWeek() : $nbrVoitureParWeek = 0; ?>
                             <?php ($nbrVoitures) ? $nbrVoitureParMois = $nbrVoitures->getNbrVoituresParDate(date('m')) : $nbrVoitureParMois = 0; ?>
+                            <?php ($nbrVoitures) ? $nbrVoitureParAnnee = $nbrVoitures->getNbrVoituresParDate(date('Y')) : $nbrVoitureParAnnee = 0; ?>
                             <td>Nbr Voiture :</td>
                             <td><span class="badge"><?php echo $nbrVoitureParJour; ?></span></td>
                             <td><span class="badge"><?php echo $nbrVoitureParWeek; ?></span></td>
                             <td><span class="badge"><?php echo $nbrVoitureParMois; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrVoitureParAnnee; ?></span></td>
                         </tr>
                         <tr>
                             <?php ($tblTapis) ? $nbrTapisParJour = $tblTapis->getNbrTapisParDate(date('d')) : $nbrTapisParJour = 0; ?>
                             <?php ($tblTapis) ? $nbrTapisParWeek = $tblTapis->getNbrTapisParWeek() : $nbrTapisParWeek = 0; ?>
                             <?php ($tblTapis) ? $nbrTapisParMois = $tblTapis->getNbrTapisParDate(date('m')) : $nbrTapisParMois = 0; ?>
+                            <?php ($tblTapis) ? $nbrTapisParAnnee = $tblTapis->getNbrTapisParDate(date('Y')) : $nbrTapisParAnnee = 0; ?>
                             <td>Nbr Tapies :</td>
                             <td><span class="badge"><?php echo $nbrTapisParJour; ?></span></td>
                             <td><span class="badge"><?php echo $nbrTapisParWeek; ?></span></td>
                             <td><span class="badge"><?php echo $nbrTapisParMois; ?></span></td>
+                            <td><span class="badge"><?php echo $nbrTapisParAnnee; ?></span></td>
                         </tr>
                         <tr>
                             <?php ($tblTapis) ? $montantTapisParJour = $tblTapis->getMontantTotalTapisParDate(date('d')) : $montantTapisParJour = 0; ?>
                             <?php ($tblTapis) ? $montantTapisParWeek = $tblTapis->getMontantTotalParWeek() : $montantTapisParWeek = 0; ?>
                             <?php ($tblTapis) ? $montantTapisParMois = $tblTapis->getMontantTotalTapisParDate(date('m')) : $montantTapisParMois = 0; ?>
+                            <?php ($tblTapis) ? $montantTapisParAnnee = $tblTapis->getMontantTotalTapisParDate(date('Y')) : $montantTapisParAnnee = 0; ?>
                             <?php ($tblFactures) ? $montantTotalParJour = $tblFactures->getMontantTotalParDate(date('d')) : $montantTotalParJour = 0; ?>
                             <?php ($tblFactures) ? $montantTotalParWeek = $tblFactures->getMontantTotalParWeek() : $montantTotalParWeek = 0; ?>
                             <?php ($tblFactures) ? $montantTotalParMois = $tblFactures->getMontantTotalParDate(date('m')) : $montantTotalParMois = 0; ?>
-                            <td>montant Total (DH) :</td>
+                            <?php ($tblFactures) ? $montantTotalParAnnee = $tblFactures->getMontantTotalParDate(date('Y')) : $montantTotalParAnnee = 0; ?>
+                            <td>Les Entrées (DH) :</td>
                             <td><span class="badge"><?php echo $montanTotalJour = $montantTotalParJour + $montantTapisParJour; ?></span></td>
                             <td><span class="badge"><?php echo $montanTotalSemaine = $montantTotalParWeek + $montantTapisParWeek; ?></span></td>
                             <td><span class="badge"><?php echo $montanTotalMois = $montantTotalParMois + $montantTapisParMois; ?></span></td>
+                            <td><span class="badge"><?php echo $montanTotalAnnee = $montantTotalParAnnee + $montantTapisParAnnee; ?></span></td>
                         </tr>
                         <tr>
                             <?php ($tblFactures) ? $depensesTotalParJour = $tblFactures->getDepensesTotalParDate(date('d')) : $depensesTotalParJour = 0; ?>
                             <?php ($tblFactures) ? $depensesTotalParMois = $tblFactures->getDepensesTotalParDate(date('m')) : $depensesTotalParMois = 0; ?>
                             <?php ($tblFactures) ? $depensesTotalParWeek = $tblFactures->getDepensesTotalParWeek() : $depensesTotalParWeek = 0; ?>
-                            <td>Dépenses Total (DH) :</td>
+                            <?php ($tblFactures) ? $depensesTotalParAnnee = $tblFactures->getDepensesTotalParDate(date('Y')) : $depensesTotalParAnnee = 0; ?>
+                            <td>Les Sorties (DH) :</td>
                             <td><span class="badge"><?php echo $depensesTotalJour = $depensesTotalParJour; ?></span></td>
                             <td><span class="badge"><?php echo $depensesSemaine = $depensesTotalParWeek; ?></span></td>
                             <td><span class="badge"><?php echo $depensesMois = $depensesTotalParMois; ?></span></td>
+                            <td><span class="badge"><?php echo $depensesTotalParAnnee; ?></span></td>
                         </tr>
                         <tr style="font-family: monospace;background-color: lightgrey;">
                             <td>GAIN NET :</td>
@@ -60,6 +70,7 @@
                             $gainParJour = $montanTotalJour - $depensesTotalJour;
                             $gainParSemaine = $montanTotalSemaine - $depensesSemaine;
                             $gainParMois = $montanTotalMois - $depensesMois;
+                            $gainParAnnee = $montanTotalAnnee - $depensesTotalParAnnee;
                             ?>
                             <td style="">
                                 <?php if ($gainParJour < 0): ?>
@@ -78,6 +89,12 @@
                                     <div class="logoWorning" ></div>
                                 <?php endif; ?>
                                 <span class="badge"><?php echo $gainParMois ?></span>
+                            </td>
+                            <td>
+                                <?php if ($gainParAnnee < 0): ?>
+                                    <div class="logoWorning" ></div>
+                                <?php endif; ?>
+                                <span class="badge"><?php echo $gainParAnnee ?></span>
                             </td>
                         </tr>
                     </tbody>

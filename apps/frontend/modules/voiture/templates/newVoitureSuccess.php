@@ -7,7 +7,24 @@
                     <?php echo $form->renderGlobalErrors(); ?>
                     <legend>Nouvelle Voiture</legend>
                     <table style="margin-bottom: 1px;">
-                        <tr>
+                        <div class="form-group" dir="rtl" lang="ar">
+                            <label for="inputPassword" class="col-md-2 control-label" style="width: 23%;"><?php echo $form['immatriculation']->renderLabel(); ?></label>
+                            <div class="col-md-1" style="padding-right: 0px;padding-left: 0px;margin-left: 0px;margin-right: 0px;">
+                                <?php echo $form['num1Matricule']->renderError(); ?>
+                                <?php echo $form['num1Matricule']->render(); ?>
+                            </div>
+                            <div class="col-md-1" style="padding-right: 0px;padding-left: 0px;margin-left: 0px;margin-right: 0px;" >
+                                /
+                                <?php echo $form['chiffreMatricule']->renderError(); ?>
+                                <?php echo $form['chiffreMatricule']->render(); ?>
+                                /
+                            </div>
+                            <div class="col-md-1" style="padding-right: 0px;padding-left: 0px;margin-left: 0px;margin-right: 0px;">
+                                <?php echo $form['num2Matricule']->renderError(); ?>
+                                <?php echo $form['num2Matricule']->render(); ?>
+                            </div>
+                        </div>
+<!--                        <tr>
                             <td>
                                 <div class="form-group">
                                     <label for="inputPassword" class="col-lg-2 control-label"><?php echo $form['immatriculation']->renderLabel(); ?></label>
@@ -17,6 +34,8 @@
                                     </div>
                                 </div> 
                             </td>
+                        </tr>-->
+                        <tr>
                             <td>
                                 <div class="form-group">
                                     <label for="inputEmail" class="col-lg-2 control-label"><?php echo $form['id_client']->renderLabel(); ?></label>
@@ -92,10 +111,10 @@
                         <!--<tr>-->
 <!--                            <td>
                                 <div class="form-group">
-                                    <label class="col-lg-2 control-label"><?php // echo $form['date_reglement']->renderLabel(); ?></label>
+                                    <label class="col-lg-2 control-label"><?php // echo $form['date_reglement']->renderLabel();   ?></label>
                                     <div class="col-lg-10">
-                                        <?php // echo $form['date_reglement']->renderError(); ?>
-                                        <?php // echo $form['date_reglement']->render(); ?>
+                        <?php // echo $form['date_reglement']->renderError(); ?>
+                        <?php // echo $form['date_reglement']->render(); ?>
                                         <span class="add-on">
                                             <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                                         </span>
@@ -104,10 +123,10 @@
                             </td>-->
 <!--                            <td>
                                 <div class="form-group" >
-                                    <label for="textArea" class="col-lg-2 control-label"><?php // echo $form['montant_lavage']->renderLabel(); ?></label>
+                                    <label for="textArea" class="col-lg-2 control-label"><?php // echo $form['montant_lavage']->renderLabel();   ?></label>
                                     <div class="col-lg-10">
-                                        <?php // echo $form['montant_lavage']->renderError(); ?>
-                                        <?php // echo $form['montant_lavage']->render(); ?>
+                        <?php // echo $form['montant_lavage']->renderError(); ?>
+                        <?php // echo $form['montant_lavage']->render(); ?>
                                     </div>
                                     <tr >
                                         <td>
@@ -123,9 +142,9 @@
 <!--                        <tr>
                             <td>
                                 <div class="form-group" >
-                                    <label for="textArea" class="col-lg-2 control-label"><?php // echo $form['libelleRefTypeLavage']->renderLabel(); ?></label>
+                                    <label for="textArea" class="col-lg-2 control-label"><?php // echo $form['libelleRefTypeLavage']->renderLabel();   ?></label>
                                     <div class="col-lg-10">
-                                        <?php // echo $form['libelleRefTypeLavage']->render(); ?>
+                        <?php // echo $form['libelleRefTypeLavage']->render(); ?>
                                     </div>
                                 </div>
                             </td>
@@ -161,7 +180,7 @@ $listImmat = implode("','", $sf_data->getRaw('listImmatriculations'));
                                     source: availableTags
                                 });
 
-                                $('#annee , #modele').keydown(function(event) {
+                                $('#annee , #modele , #num1Matricule , #num2Matricule').keydown(function(event) {
                                     // Allow special chars + arrows 
                                     if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9
                                             || event.keyCode == 27 || event.keyCode == 13
@@ -184,7 +203,7 @@ $listImmat = implode("','", $sf_data->getRaw('listImmatriculations'));
 ////    var total  = parseFloat($('#tbl_voiture_montant_lavage').val());
 ////                                if (this.checked) {
 //                                    var idTypeLavage = $(this).val();
-//                                    $('#divFormMotif').load("<?php // echo url_for("voiture/checkTypeLavage?idTypeLavage=") ?>" + idTypeLavage, function(data) {
+//                                    $('#divFormMotif').load("<?php // echo url_for("voiture/checkTypeLavage?idTypeLavage=")   ?>" + idTypeLavage, function(data) {
 //                                        if (data)
 //                                        {
 //                                            old_val = $("#tbl_voiture_montant_lavage").val();

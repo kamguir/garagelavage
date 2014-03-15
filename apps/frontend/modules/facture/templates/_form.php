@@ -20,11 +20,13 @@
         </tfoot>
         <tbody>
             <?php echo $form->renderGlobalErrors() ?>
-            <tr>
+            <tr dir="rtl" lang="ar">
                 <th><?php echo $form['id_voiture']->renderLabel() ?></th>
                 <td>
-                    <?php echo $form['id_voiture']->renderError() ?>
-                    <?php echo $form['id_voiture'] ?>
+                    <p dir='rtl' lang='ar'>
+                        <?php echo $form['id_voiture']->renderError() ?>
+                        <?php echo $form['id_voiture'] ?>
+                    </p>
                 </td>
             </tr>
             <tr>
@@ -48,17 +50,17 @@
                 </td>
             </tr>
             <tr>
-                <th><?php echo $form['date_reglement']->renderLabel() ?></th>
-                <td>
-                    <?php echo $form['date_reglement']->renderError() ?>
-                    <?php echo $form['date_reglement'] ?>
-                </td>
-            </tr>
-            <tr>
                 <th><?php echo $form['lnk_type_lavage_facture_list']->renderLabel() ?></th>
                 <td>
                     <?php echo $form['lnk_type_lavage_facture_list']->renderError() ?>
                     <?php echo $form['lnk_type_lavage_facture_list'] ?>
+                </td>
+            </tr>
+            <tr>
+                <th><?php echo $form['date_reglement']->renderLabel() ?></th>
+                <td>
+                    <?php echo $form['date_reglement']->renderError() ?>
+                    <?php echo $form['date_reglement'] ?>
                 </td>
             </tr>
             <tr>

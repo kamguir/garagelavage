@@ -24,7 +24,7 @@ class TblObjectifForm extends BaseTblObjectifForm {
         $this->setValidator('objectif_fixe', new sfValidatorString());
 
         $this->setWidget('objectif_realise', new sfWidgetFormInputText());
-        $this->setValidator('objectif_realise', new sfValidatorString());
+        $this->setValidator('objectif_realise', new sfValidatorString(array('required' => false)));
 
         $this->getWidgetSchema()->setLabels(array(
             'objectif_date' => 'Choisir Date :',

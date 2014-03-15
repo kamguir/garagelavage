@@ -36,6 +36,10 @@ class TblClientForm extends BaseTblClientForm
         $this->widgetSchema['fonction_client'] = new sfWidgetFormInputText();
         $this->validatorSchema['fonction_client'] = new sfValidatorString(array('required' => false));
 
+        //is employe 
+        $this->widgetSchema['is_employe'] = new sfWidgetFormInputCheckbox();
+        $this->setDefault('is_employe', false);
+        
         $this->getWidgetSchema()->setLabels(array(
             'cin_client' => 'CIN client :',
             'nom_client' => 'Nom :',
@@ -44,6 +48,7 @@ class TblClientForm extends BaseTblClientForm
             'age_client' => 'Age :',
             'num_tel' => 'Téléphone :',
             'adresse_client' => 'Adresse :',
+            'is_employe' => 'c\'est employe :',
             'fonction_client' => 'Fonction :'
         ));
   }

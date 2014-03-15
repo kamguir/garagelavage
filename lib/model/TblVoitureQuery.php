@@ -32,14 +32,14 @@ class TblVoitureQuery extends BaseTblVoitureQuery {
             $this->condition('nomClient' . $i, 'TblClient.NomClient LIKE ?', $search)
                     ->condition('prenomClient' . $i, 'TblClient.PrenomClient LIKE ?', $search)
                     ->condition('motorisation' . $i, 'RefMotorisation.Motorisation LIKE ?', $search)
-                    ->condition('immat' . $i, 'tbl_voiture.Immatriculation LIKE ?', $search)
-                    ->condition('idFacture' . $i, 'TblFacture.IdFacture LIKE ?', $search);
+                    ->condition('immat' . $i, 'tbl_voiture.Immatriculation LIKE ?', $search);
+//                    ->condition('idFacture' . $i, 'TblFacture.IdFacture LIKE ?', $search);
 
             $arrayCondition[] = 'nomClient' . $i;
             $arrayCondition[] = 'prenomClient' . $i;
             $arrayCondition[] = 'motorisation' . $i;
             $arrayCondition[] = 'immat' . $i;
-            $arrayCondition[] = 'idFacture' . $i;
+//            $arrayCondition[] = 'idFacture' . $i;
 
             $this->combine($arrayCondition, 'or', "combine" . $i);
             $arrayCombine[] = "combine" . $i;
@@ -59,16 +59,16 @@ class TblVoitureQuery extends BaseTblVoitureQuery {
                         ->orderByPrenomClient($order)
                         ->endUse();
                 break;
-            case 3:
-                $this->useTblFactureQuery()
-                        ->orderByPrixLavage($order)
-                        ->endUse();
-                break;
-            case 4:
-                $this->useTblFactureQuery()
-                        ->orderByDateReglement($order)
-                        ->endUse();
-                break;
+//            case 3:
+//                $this->useTblFactureQuery()
+//                        ->orderByPrixLavage($order)
+//                        ->endUse();
+//                break;
+//            case 4:
+//                $this->useTblFactureQuery()
+//                        ->orderByDateReglement($order)
+//                        ->endUse();
+//                break;
         }
         return $this;
     }

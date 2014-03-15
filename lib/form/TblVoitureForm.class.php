@@ -11,44 +11,28 @@ class TblVoitureForm extends BaseTblVoitureForm {
 
     public function configure() {
 
-//        $idTypeLavage = $this->getOption('libelleRefTypeLavage');
-//        $prixLavage = null;
-//        $dateReglementFacture = null;
-//
-//        $typeLavageSelected = LnkTypeLavageFactureQuery::create()
-//                ->useTblFactureQuery()
-//                ->filterByIdVoiture($this->getObject()->getIdVoiture())
-//                ->endUse()
-//                ->find();
-//        $qRefTypeLavage = RefTypeLavageQuery::Create();
-//        $this->setWidget("libelleRefTypeLavage", new sfWidgetFormPropelChoice(array('model' => 'refTypeLavage', 'criteria' => $qRefTypeLavage, 'method' => 'getLibelle', 'multiple' => true, 'expanded' => true)));
-//        $this->setValidator('libelleRefTypeLavage', new sfValidatorPropelChoice(array('model' => 'refTypeLavage', 'multiple' => true, 'required' => false)));
-//        if ($typeLavageSelected) {
-//            // si update chargé les types lavages
-//            $values = array();
-//            foreach ($typeLavageSelected as $obj) {
-//                $values[] = $obj->getIdTypeLavage();
-//            }
-//            $this->setDefault('libelleRefTypeLavage', $values);
-//        }
+        if ($this->isNew()) {
+            $this->widgetSchema['num1Matricule'] = new sfWidgetFormInputText(array(), array("style" => 'width: 100%;', "id" => 'num1Matricule'));
+            $this->validatorSchema['num1Matricule'] = new sfValidatorString();
+            $this->widgetSchema['chiffreMatricule'] = new sfWidgetFormChoice(array('choices' => array(
+                    'أ' => 'أ',
+                    'ب' => 'ب',
+                    'ت' => 'ت',
+//                '&#1664' => 'د',
+                    'د' => 'د',
+                    'ھ' => 'ھ',)), array("style" => 'width: 70%;'));
+            $this->validatorSchema['chiffreMatricule'] = new sfValidatorPass();
+            $this->widgetSchema['num2Matricule'] = new sfWidgetFormInputText(array(), array("style" => 'width: 100%;', "id" => 'num2Matricule'));
+            $this->validatorSchema['num2Matricule'] = new sfValidatorString();
+        } else {
+            $this->widgetSchema['immatriculation'] = new sfWidgetFormInputText(array(), array("id" => 'input'));
+            $this->validatorSchema['immatriculation'] = new sfValidatorString();
+        }
 
-        // afficher le prix Lavage dans formulaire Edit
-//        $maFacture = TblFactureQuery::create()->filterByIdVoiture($this->getObject()->getIdVoiture())->findOne();
-//        if ($maFacture) {
-//            $prixLavage = $maFacture->getPrixLavage();
-//            $dateReglementFacture = $maFacture->getDateReglement();
-//        }
-
-//        $this->setWidget('montant_lavage', new sfWidgetFormInputText());
-//        $this->setValidator('montant_lavage', new sfValidatorString());
-//        $this->getWidget('montant_lavage')->setDefault($prixLavage);
-//        $this->getWidget('defaultprix')->setAttribute('disabled', 'disabled');
-
-        $this->widgetSchema['immatriculation'] = new sfWidgetFormInputText(array(), array("id" => 'input'));
-        $this->validatorSchema['immatriculation'] = new sfValidatorString();
-
-        $this->setWidget("id_client", new sfWidgetFormPropelChoice(array('model' => 'tblClient', 'add_empty' => false)));
-        $this->setValidator('id_client', new sfValidatorPropelChoice(array('model' => 'tblClient', 'required' => false)));
+        // juste les Clients
+        $qIdClient = TblClientQuery::Create()->filterByIsEmploye(0);
+        $this->setWidget("id_client", new sfWidgetFormPropelChoice(array('model' => 'tblClient', 'criteria' => $qIdClient, 'add_empty' => false)));
+        $this->setValidator('id_client', new sfValidatorPropelChoice(array('model' => 'tblClient', 'required' => true)));
         $this->widgetSchema['id_client']->setDefault(1);
 
         $this->setWidget("id_marque", new sfWidgetFormPropelChoice(array('model' => 'refMarque', 'add_empty' => false)));
@@ -61,50 +45,45 @@ class TblVoitureForm extends BaseTblVoitureForm {
 
         $this->widgetSchema['couleur'] = new sfWidgetFormInputText(array(), array("class" => 'color'));
         $this->validatorSchema['couleur'] = new sfValidatorString();
-        
+
         $this->validatorSchema['nbr_portes'] = new sfValidatorPropelChoice(array('model' => 'refNbrPortes', 'required' => false));
         $this->widgetSchema['nbr_portes']->setDefault(5);
 
         $this->widgetSchema['modele'] = new sfWidgetFormInputText(array(), array("id" => 'modele'));
         $this->validatorSchema['modele'] = new sfValidatorString(array('required' => false));
-        
+
         $this->widgetSchema['annee'] = new sfWidgetFormInputText(array(), array("id" => 'annee'));
         $this->validatorSchema['annee'] = new sfValidatorString(array('required' => false));
 
-//        $widgetDateTime = new orcaWidgetFormDateText(array('format' => 'Y-m-d H:i:s', 'form' => $this));
-//        $validatorDateTime = new orcaValidatorDateTimesText(array('with_time' => true, 'format' => 'd/m/Y H:i'));
-
-//        $this->setWidget('date_reglement', $widgetDateTime);
-//        $this->getWidget('date_reglement')->setOption('format', 'Y-m-d H:i:s');
-//        $this->setValidator('date_reglement', $validatorDateTime);
-//        if ($dateReglementFacture) {
-//            $this->getWidget('date_reglement')->setDefault($dateReglementFacture);
-//        } else {
-//            $this->setDefault('date_reglement', date('Y-m-d H:i:s'));
-//        }
-
         $this->getWidgetSchema()->setLabels(array(
             'id_client' => 'Client :',
-            'immatriculation' => 'Immatriculation :',
+//            'immatriculation' => 'Immatriculation ',
             'id_marque' => 'Marque :',
             'id_motorisation' => 'Motorisation :',
             'couleur' => 'Couleur :',
             'nbr_portes' => 'Nombre Portes :',
             'modele' => 'Modele :',
-//            'libelleRefTypeLavage' => 'Type Lavage :',
             'annee' => 'Annee :'
-//            'date_reglement' => 'Choisir Date :',
-//            'defaultprix' => 'Default prix'
         ));
     }
 
     public function save($con = null) {
-
+//        var_dump($this->getValue('num1Matricule'));
+//        die;
+//        var_dump($this->getValues());
+//        die;
         parent::save($con);
-//        var_dump($this->form->getValues());die;
         $object = $this->getObject();
+
+        if ($this->isNew()) {
+            // récuperer immatriculation
+            $newImmat = $this->getValue('num1Matricule') . '/' . $this->getValue('chiffreMatricule') . '/' . $this->getValue('num2Matricule');
+            $object->setImmatriculation($newImmat);
+        }
+
+
         $tblVoitures = TblVoitureQuery::create()
-                ->filterByImmatriculation($object->getImmatriculation())
+                ->filterByImmatriculation($newImmat)
                 ->withColumn('MAX(' . TblVoiturePeer::NB_VISITE . ')', "nbrVisite")
                 ->select('nbrVisite')
                 ->findOne();
@@ -112,51 +91,20 @@ class TblVoitureForm extends BaseTblVoitureForm {
         $object->setNbVisite($nbrVisite);
         $object->save();
 
-        //sauvegarder Factures
-//        $tblfactures = new TblFacture();
-//        $tblfactures->setIdVoiture($object->getIdVoiture());
-//        $tblfactures->setDateReglement($this->getValue('date_reglement'));
-//        $tblfactures->setPrixLavage($this->getValue('montant_lavage'));
-//        $tblfactures->setEtat(0);
-//        $tblfactures->save();
-//
-//        //sauvegarder lnkTypeLavageFacture
-//        $valuesSelectedTypeLavage = $this->getValue('libelleRefTypeLavage');
-//        if (is_array($valuesSelectedTypeLavage)) {
-//            foreach ($valuesSelectedTypeLavage as $value) {
-//                $lnkTyprLavageFacture = new LnkTypeLavageFacture();
-//                $lnkTyprLavageFacture->setIdFacture($tblfactures->getIdFacture());
-//                $lnkTyprLavageFacture->setIdTypeLavage($value);
-//                $lnkTyprLavageFacture->save();
-//            }
-//        } else {
-//            $lnkTyprLavageFacture = new LnkTypeLavageFacture();
-//            $lnkTyprLavageFacture->setIdFacture($tblfactures->getIdFacture());
-//            $lnkTyprLavageFacture->setIdTypeLavage($valuesSelectedTypeLavage);
-//            $lnkTyprLavageFacture->save();
-//        }
-//
-//        //sauvegarder Ticket
-//        $ticket = new TblTicket();
-//        $ticket->setIdFacture($tblfactures->getIdFacture());
-//        $ticket->setDateEntreeGarage(date('Y-m-d'));
-////        $ticket->setDateSortieGarage($ticket)
-//        $ticket->save();
-//
-//        // ajouter Voiture a objectif realisé tbl_objectif
-//        $mois = date('m');
-//        $annee = date('Y');
-//        $moisCourant = 'MONTH(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $mois;
-//        $anneeCourante = 'YEAR(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $annee;
-//        $monObjectif = TblObjectifQuery::create()
-//                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $moisCourant, Criteria::CUSTOM)
-//                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $anneeCourante, Criteria::CUSTOM)
-//                ->findOne();
-//        if ($monObjectif) {
-//            $monObjectifRealise = $monObjectif->getObjectifRealise();
-//            $monObjectif->setObjectifRealise($monObjectifRealise + 1);
-//            $monObjectif->save();
-//        }
+        // ajouter Voiture a objectif realisé tbl_objectif
+        $mois = date('m');
+        $annee = date('Y');
+        $moisCourant = 'MONTH(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $mois;
+        $anneeCourante = 'YEAR(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $annee;
+        $monObjectif = TblObjectifQuery::create()
+                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $moisCourant, Criteria::CUSTOM)
+                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $anneeCourante, Criteria::CUSTOM)
+                ->findOne();
+        if ($monObjectif) {
+            $monObjectifRealise = $monObjectif->getObjectifRealise();
+            $monObjectif->setObjectifRealise($monObjectifRealise + 1);
+            $monObjectif->save();
+        }
     }
 
 }

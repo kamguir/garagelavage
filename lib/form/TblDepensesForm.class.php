@@ -8,11 +8,11 @@
  * @author     Your name here
  */
 class TblDepensesForm extends BaseTblDepensesForm {
-    
-    private $tblReponse = array('0'=>'Non','1'=>'Oui');
-    
+
+    private $tblReponse = array('0' => 'Non', '1' => 'Oui');
+
     public function configure() {
-        
+
         $this->setWidget('date_depenses', new orcaWidgetFormJQueryDate(array(
             'image' => "/images/pictos/calendar.png",
             'config' => '{firstDay: 1, buttonText: \'Changer la date\'}',
@@ -31,7 +31,8 @@ class TblDepensesForm extends BaseTblDepensesForm {
         $this->widgetSchema['etat_payement'] = new sfWidgetFormChoice(array(
             'choices' => $this->tblReponse,
             'multiple' => false, 'expanded' => true
-        ));
+                ), array('style' => 'list-style-type:none;')
+        );
 
         $this->validatorSchema['etat_payement'] = new sfValidatorChoice(array(
             'choices' => array_keys($this->tblReponse),
@@ -45,9 +46,8 @@ class TblDepensesForm extends BaseTblDepensesForm {
 //        }  else {
 //            $cocher[] = 0;
 //        }
-        
 //        $this->getWidget('etat_payement')->setDefault($cocher);
-        
+
         $this->getWidgetSchema()->setLabels(array(
             'date_depenses' => 'Choisir date :',
             'montant_depenses' => 'Montant (dh) :',

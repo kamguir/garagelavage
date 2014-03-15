@@ -51,6 +51,9 @@ class accueilActions extends sfActions {
          
          $this->objectifsFixes = TblObjectifQuery::create()
                 ->findOne();
+         $this->depensesNonPaye = TblDepensesQuery::create()
+                 ->filterByEtatPayement(0)
+                 ->find();
     }
 
 }

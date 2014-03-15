@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Skeleton subclass for representing a row from the 'tbl_tapis' table.
  *
@@ -18,7 +16,8 @@
  * @package    propel.generator.lib.model
  */
 class TblTapis extends BaseTblTapis {
- public function getMontantTotalTapisParDate($date) {
+
+    public function getMontantTotalTapisParDate($date) {
         $jour = date('d');
         $mois = date('m');
         $annee = date('Y');
@@ -34,10 +33,10 @@ class TblTapis extends BaseTblTapis {
         }
         if ($date == $annee) {
             $jourCourant = 'DAY(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . $mois;
+            $moisCourant = 'MONTH(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')between 1 and 12';
             $anneeCourante = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . $annee;
         }
-        
+
         return (double) TblTapisQuery::create()
                         ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $jourCourant, Criteria::CUSTOM)
                         ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $moisCourant, Criteria::CUSTOM)
@@ -63,7 +62,7 @@ class TblTapis extends BaseTblTapis {
             $anneeCourante = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . $annee;
         } if ($date == $annee) {
             $jourCourant = 'DAY(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . $mois;
+            $moisCourant = 'MONTH(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')between 1 and 12';
             $anneeCourante = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . $annee;
         }
         return $nbrVoitures = TblTapisQuery::create()
@@ -75,13 +74,29 @@ class TblTapis extends BaseTblTapis {
         echo Propel::getConnection()->getLastExecutedQuery();
         die;
     }
-    
+
     public function getNbrTapisParWeek() {
         $weekAcctuel = 'WEEK(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=WEEK(CURDATE())';
-        $anneeAcctuelle = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' .date('Y');
+        $anneeAcctuelle = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . date('Y');
         return $nbrVoitures = TblTapisQuery::create()
                 ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $weekAcctuel, Criteria::CUSTOM)
                 ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $anneeAcctuelle, Criteria::CUSTOM)
                 ->count();
     }
-} // TblTapis
+
+    public function getMontantTotalParWeek() {
+        $weekAcctuel = 'WEEK(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=WEEK(CURDATE())';
+        $anneeAcctuelle = 'YEAR(' . TblTapisPeer::DATE_LAVAGE_TAPIS . ')=' . date('Y');
+
+        return (double) TblTapisQuery::create()
+                        ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $weekAcctuel, Criteria::CUSTOM)
+                        ->addAnd(TblTapisPeer::DATE_LAVAGE_TAPIS, $anneeAcctuelle, Criteria::CUSTOM)
+                        ->withColumn('SUM(' . TblTapisPeer::MONTANT_LAVAGE_TAPIS . ')', "montantTotal")
+                        ->select('montantTotal')
+                        ->findOne();
+        echo Propel::getConnection()->getLastExecutedQuery();
+        die;
+    }
+}
+
+// TblTapis

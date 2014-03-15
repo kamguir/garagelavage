@@ -13,7 +13,7 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
   {
     $this->setWidgets(array(
       'id_voiture'                   => new sfWidgetFormPropelChoice(array('model' => 'TblVoiture', 'add_empty' => true)),
-      'id_type_lavage'               => new sfWidgetFormFilterInput(),
+      'id_employe'                   => new sfWidgetFormPropelChoice(array('model' => 'TblClient', 'add_empty' => true)),
       'prix_lavage'                  => new sfWidgetFormFilterInput(),
       'commentaire_reglement'        => new sfWidgetFormFilterInput(),
       'date_reglement'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
@@ -23,7 +23,7 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
 
     $this->setValidators(array(
       'id_voiture'                   => new sfValidatorPropelChoice(array('required' => false, 'model' => 'TblVoiture', 'column' => 'id_voiture')),
-      'id_type_lavage'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'id_employe'                   => new sfValidatorPropelChoice(array('required' => false, 'model' => 'TblClient', 'column' => 'id_client')),
       'prix_lavage'                  => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'commentaire_reglement'        => new sfValidatorPass(array('required' => false)),
       'date_reglement'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
@@ -73,7 +73,7 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
     return array(
       'id_facture'                   => 'Number',
       'id_voiture'                   => 'ForeignKey',
-      'id_type_lavage'               => 'Number',
+      'id_employe'                   => 'ForeignKey',
       'prix_lavage'                  => 'Number',
       'commentaire_reglement'        => 'Text',
       'date_reglement'               => 'Date',

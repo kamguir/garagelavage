@@ -23,8 +23,10 @@
             <tr>
                 <th><?php echo $form['immatriculation']->renderLabel() ?></th>
                 <td>
-                    <?php echo $form['immatriculation']->renderError() ?>
-                    <?php echo $form['immatriculation'] ?>
+                    <p dir='rtl' lang='ar'>
+                        <?php echo $form['immatriculation']->renderError() ?>
+                        <?php echo $form['immatriculation'] ?>
+                    </p>
                 </td>
             </tr>
             <tr>
@@ -34,13 +36,6 @@
                     <?php echo $form['id_client'] ?>
                 </td>
             </tr>
-<!--            <tr>
-                <th><?php // echo $form['date_reglement']->renderLabel() ?></th>
-                <td>
-                    <?php // echo $form['date_reglement']->renderError() ?>
-                    <?php // echo $form['date_reglement'] ?>
-                </td>
-            </tr>-->
             <tr>
                 <th><?php echo $form['id_marque']->renderLabel() ?></th>
                 <td>
@@ -83,20 +78,6 @@
                     <?php echo $form['annee'] ?>
                 </td>
             </tr>
-<!--            <tr>
-                <th><?php // echo $form['montant_lavage']->renderLabel()  ?></th>
-                <td>
-                    <?php // echo $form['montant_lavage']->renderError() ?>
-                    <?php // echo $form['montant_lavage'] ?>
-                </td>
-            </tr>-->
-<!--            <tr>
-                <th><?php // echo $form['libelleRefTypeLavage']->renderLabel()  ?></th>
-                <td>
-                    <?php // echo $form['libelleRefTypeLavage']->renderError() ?>
-                    <?php // echo $form['libelleRefTypeLavage'] ?>
-                </td>
-            </tr>-->
         </tbody>
     </table>
 </form>

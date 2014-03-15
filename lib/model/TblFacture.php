@@ -20,6 +20,7 @@ class TblFacture extends BaseTblFacture {
     public function __toString() {
         return $this->getIdFacture();
     }
+
     public function getLibelle() {
         return 'rrrr';
 //        return $this->getRefTypeLavage()->getLibelle();
@@ -41,7 +42,7 @@ class TblFacture extends BaseTblFacture {
         }
         if ($date == $annee) {
             $jourCourant = 'DAY(' . TblFacturePeer::DATE_REGLEMENT . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $mois;
+            $moisCourant = 'MONTH(' . TblFacturePeer::DATE_REGLEMENT . ')between 1 and 12';
             $anneeCourante = 'YEAR(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $annee;
         }
         return (double) TblFactureQuery::create()
@@ -54,7 +55,7 @@ class TblFacture extends BaseTblFacture {
                         ->withColumn('SUM(' . TblFacturePeer::PRIX_LAVAGE . ')', "montantTotal")
                         ->select('montantTotal')
                         ->findOne();
-        
+
         echo Propel::getConnection()->getLastExecutedQuery();
         die;
     }
@@ -73,7 +74,7 @@ class TblFacture extends BaseTblFacture {
             $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
         } if ($date == $annee) {
             $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $mois;
+            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 12';
             $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
         }
         return (double) TblDepensesQuery::create()
@@ -124,9 +125,9 @@ class TblFacture extends BaseTblFacture {
                         ->addAnd(TblFacturePeer::DATE_REGLEMENT, 'MONTH(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $mois, Criteria::CUSTOM)
                         ->addAnd(TblFacturePeer::DATE_REGLEMENT, 'YEAR(' . TblFacturePeer::DATE_REGLEMENT . ')=' . date('Y'), Criteria::CUSTOM)
                         ->useLnkTypeLavageFactureQuery()
-                            ->useRefTypeLavageQuery()
-                            ->withColumn('SUM(' . RefTypeLavagePeer::MONTANT_LAVAGE . ')', "montantTotal")
-                            ->endUse()
+                        ->useRefTypeLavageQuery()
+                        ->withColumn('SUM(' . RefTypeLavagePeer::MONTANT_LAVAGE . ')', "montantTotal")
+                        ->endUse()
                         ->endUse()
 //                        ->useRefTypeLavageQuery()
 //                        ->withColumn('SUM(' . RefTypeLavagePeer::MONTANT_LAVAGE . ')', "montantTotal")
@@ -138,16 +139,28 @@ class TblFacture extends BaseTblFacture {
     }
 
     public function toArrayString() {
-        
+        $nomEmploye = ' -- ';
+        if ($this->getTblClient()) {
+            $nomEmploye = $this->getTblClient()->getLibelle();
+        }
+        $pieces = explode("/",  $this->getTblVoiture()->getImmatriculation());
         return array(
-            $this->getIdFacture(),
-            $this->getIdVoiture(). ' , ' .$this->getTblVoiture()->getRefMarque()->getMarqueLibelle(),
-            $this->getTblVoiture()->getImmatriculation(),
+//            $this->getIdFacture(),
+            $this->getTblVoiture()->getRefMarque()->getMarqueLibelle(),
+            '<p dir=\'rtl\' lang=\'ar\'>'.$pieces[2].'/'.$pieces[1].'/'.$pieces[0].'</p>',
+            $nomEmploye,
             $this->getPrixLavage(),
             $this->getDateReglement(),
             "DT_RowId" => "row_" . $this->getIdFacture()
         );
     }
+
+    function getNrbVoituresparEmploye($idEmploye) {
+        return (int) TblFactureQuery::create()
+                        ->filterByIdEmploye($idEmploye)
+                        ->count();
+    }
+
 }
 
 // TblFacture

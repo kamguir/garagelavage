@@ -16,7 +16,7 @@ abstract class BaseTblFactureForm extends BaseFormPropel
     $this->setWidgets(array(
       'id_facture'                   => new sfWidgetFormInputHidden(),
       'id_voiture'                   => new sfWidgetFormPropelChoice(array('model' => 'TblVoiture', 'add_empty' => true)),
-      'id_type_lavage'               => new sfWidgetFormInputText(),
+      'id_employe'                   => new sfWidgetFormPropelChoice(array('model' => 'TblClient', 'add_empty' => true)),
       'prix_lavage'                  => new sfWidgetFormInputText(),
       'commentaire_reglement'        => new sfWidgetFormInputText(),
       'date_reglement'               => new sfWidgetFormDateTime(),
@@ -27,7 +27,7 @@ abstract class BaseTblFactureForm extends BaseFormPropel
     $this->setValidators(array(
       'id_facture'                   => new sfValidatorChoice(array('choices' => array($this->getObject()->getIdFacture()), 'empty_value' => $this->getObject()->getIdFacture(), 'required' => false)),
       'id_voiture'                   => new sfValidatorPropelChoice(array('model' => 'TblVoiture', 'column' => 'id_voiture', 'required' => false)),
-      'id_type_lavage'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
+      'id_employe'                   => new sfValidatorPropelChoice(array('model' => 'TblClient', 'column' => 'id_client', 'required' => false)),
       'prix_lavage'                  => new sfValidatorNumber(array('required' => false)),
       'commentaire_reglement'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'date_reglement'               => new sfValidatorDateTime(array('required' => false)),

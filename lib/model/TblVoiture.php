@@ -25,38 +25,44 @@ class TblVoiture extends BaseTblVoiture {
     const VIDANGE = 6;
 
     public function toArrayString() {
-        $tblFactures = TblFactureQuery::create()
-                ->filterByIdVoiture($this->getIdVoiture())
-                ->findOne();
-        $dateFacture = '';
-        $dateEntree = '';
-        $dateSortie = '';
-        $montant = 000;
-        if ($tblFactures) {
-            $dateFacture = $tblFactures->getDateReglement();
-            foreach ($tblFactures->getTblTickets() as $value) { /* @var $value LnkTypeLavageFacture */
-                $dateEntree = $value->getDateEntreeGarage();
-                $dateSortie = $value->getDateSortieGarage();
-            }
-            $montant = $tblFactures->getPrixLavage();
-        }
-        if(!$dateFacture){
-            $dateFacture = 'Non Définie';
-        }
-        if(!$dateEntree){
-            $dateEntree = 'Non Définie';
-        }
-        if(!$dateSortie){
-            $dateSortie = 'Non Définie';
+//        $tblFactures = TblFactureQuery::create()
+//                ->filterByIdVoiture($this->getIdVoiture())
+//                ->findOne();
+//        $dateFacture = '';
+//        $dateEntree = '';
+//        $dateSortie = '';
+//        $montant = 000;
+//        if ($tblFactures) {
+//            $dateFacture = $tblFactures->getDateReglement();
+//            foreach ($tblFactures->getTblTickets() as $value) { /* @var $value LnkTypeLavageFacture */
+//                $dateEntree = $value->getDateEntreeGarage();
+//                $dateSortie = $value->getDateSortieGarage();
+//            }
+//            $montant = $tblFactures->getPrixLavage();
+//        }
+//        if(!$dateFacture){
+//            $dateFacture = 'Non Définie';
+//        }
+//        if(!$dateEntree){
+//            $dateEntree = 'Non Définie';
+//        }
+//        if(!$dateSortie){
+//            $dateSortie = 'Non Définie';
+//        }
+        $pieces = explode("/", $this->getImmatriculation());
+        $nomCleint = ' -- ';
+        $nomNom = ' -- ';
+        if ($this->getTblClient()) {
+            $nomCleint = $this->getTblClient()->getPrenomClient();
+            $nomNom = $this->getTblClient()->getNomClient();
         }
         return array(
-            $this->getImmatriculation(),
-            $this->getTblClient()->getPrenomClient() . ' ' . $this->getTblClient()->getNomClient(),
-            $this->getRefMarque()->getMarqueLibelle() . ', ' . $this->getRefMotorisation()->getMotorisation(),
-            $montant,
-            $dateFacture,
-            $dateEntree,
-            $dateSortie,
+            '<p dir=\'rtl\' lang=\'ar\'>' . $pieces[2] . '/' . $pieces[1] . '/' . $pieces[0] . '</p>',
+            $nomCleint . ' ' . $nomNom,
+            $this->getRefMarque()->getMarqueLibelle(),
+            $this->getRefMotorisation()->getMotorisation(),
+            $this->getNbrPortes(),
+            $this->getNbVisite(),
             '<div class="cercle" style="background-color:#' . $this->getCouleur() . ' ">&nbsp</div>',
             "DT_RowId" => "row_" . $this->getIdVoiture()
         );
@@ -100,7 +106,7 @@ class TblVoiture extends BaseTblVoiture {
             $anneeCourante = 'YEAR(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $annee;
         } if ($date == $annee) {
             $jourCourant = 'DAY(' . TblFacturePeer::DATE_REGLEMENT . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $mois;
+            $moisCourant = 'MONTH(' . TblFacturePeer::DATE_REGLEMENT . ')between 1 and 31';
             $anneeCourante = 'YEAR(' . TblFacturePeer::DATE_REGLEMENT . ')=' . $annee;
         }
         return $nbrVoitures = TblVoitureQuery::create()

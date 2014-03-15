@@ -27,11 +27,15 @@ class TblFactureQuery extends BaseTblFactureQuery {
             $this->condition('idFacture' . $i, 'TblFacture.IdFacture LIKE ?', $search)
                     ->condition('marque' . $i, 'RefMarque.MarqueLibelle LIKE ?', $search)
                     ->condition('prixLavage' . $i, 'TblFacture.PrixLavage LIKE ?', $search)
+                    ->condition('nomEmploye' . $i, 'TblClient.NomClient LIKE ?', $search)
+                    ->condition('preNomEmploye' . $i, 'TblClient.PrenomClient LIKE ?', $search)
                     ->condition('immat' . $i, 'TblVoiture.Immatriculation LIKE ?', $search);
 
             $arrayCondition[] = 'immat' . $i;
             $arrayCondition[] = 'marque' . $i;
             $arrayCondition[] = 'prixLavage' . $i;
+            $arrayCondition[] = 'nomEmploye' . $i;
+            $arrayCondition[] = 'preNomEmploye' . $i;
             $arrayCondition[] = 'idFacture' . $i;
 
             $this->combine($arrayCondition, 'or', "combine" . $i);

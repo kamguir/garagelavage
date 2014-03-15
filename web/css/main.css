@@ -82,6 +82,23 @@
     margin-bottom: 0px;
     background:url(../images/pictos/facture.png) no-repeat;
 }
+.logoWorning {
+    float:left;
+    height:16px;
+    width:16px;
+    margin-top:0px;
+    margin-bottom: 0px;
+    background:url(../images/pictos/warning.png) no-repeat;
+}
+.logoLockClosed {
+    float:left;
+    height:32px;
+    width:32px;
+    margin-top:0px;
+    margin-bottom: 0px;
+    background:url(../images/lock-closed.png) no-repeat;
+}
+
 .inputTransparent {
     width: 80px;
     background-color: transparent !important;

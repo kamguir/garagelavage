@@ -15,10 +15,10 @@
                     <th><?php echo __('Immatriculation') ?></th>
                     <th><?php echo __('Client') ?></th>
                     <th><?php echo __('Marque') ?></th>
-                    <th><?php echo __('Montant (DH)') ?></th>
-                    <th><?php echo __('Date Réglement') ?></th>
-                    <th><?php echo __('Date Entrée') ?></th>
-                    <th><?php echo __('Date Sortie') ?></th>
+                    <th><?php echo __('Motorisation') ?></th>
+                    <th><?php echo __('Nbr Portes') ?></th>
+                    <th><?php echo __('Nbr Visite') ?></th>
+                    <!--<th><?php // echo __('Date Sortie') ?></th>-->
                     <th><?php echo __('Couleur') ?></th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
                 {
                     "sDom": 'R<"H"lfr>t<"F"ip<',
                     "bJQueryUI": true,
-                    "aaSorting": [[4, "desc"]],
+                    "aaSorting": [[0, "desc"]],
                     "oLanguage": datatablefr,
                     "bAutoWidth": false,
                     "bProcessing": true,

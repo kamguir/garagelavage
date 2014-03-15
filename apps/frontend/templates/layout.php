@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>
-            <?php include_slot('title', 'BackOffice LavageAyoub') ?>
+            <?php include_slot('title', 'BackOffice Gestion Lavage') ?>
         </title>
         <?php include_http_metas() ?>
         <?php include_metas() ?>
@@ -17,11 +17,11 @@
 
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-                <div id="header">
-                    <p class="logo"><a href="<?php echo url_for('@homepage') ?>"></a></p>
+                <div id="header" >
+                    <!--<p class="logo"><a href="<?php echo url_for('@homepage') ?>"></a></p>-->
                 </div>
                 <div class="navbar-header">
-                    <a href="<?php echo url_for('@homepage') ?>" class="navbar-brand"><?php echo TblParamPortailPeer::getValueByName('NOM_PROJET') ?></a>
+                    <a href="<?php echo url_for('@homepage') ?>" class="navbar-brand" style="font: lobster,Oswald,Arial,Serif;"><?php echo TblParamPortailPeer::getValueByName('NOM_PROJET'); ?></a>
                     <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -34,7 +34,10 @@
                             <a href="<?php echo url_for('@homepage') ?>">Accueil</a>
                         </li>
                         <li>
-                            <a href="<?php echo url_for('@suiviVoitures') ?>">Suivi</a>
+                            <a href="<?php echo url_for('@suiviVoitures') ?>">Voitures</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo url_for('@listeFactures') ?>">Factures</a>
                         </li>
                         <li>
                             <a href="<?php echo url_for('@administrationpage') ?>">Administration</a>
@@ -49,6 +52,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li style="color: #fff;">Version <?php echo TblParamPortailPeer::getValueByName('VERSION') ?></li>
+<!--                        <li style="color: #fff;">Version <?php // echo $sf_user->getAttribute('fonction'); ?></li>-->
                     </ul>
                 </div>
             </div>
@@ -58,8 +62,8 @@
                 <!--col-xs-6 col-sm-3-->
                 <div class="col-xs-6 col-md-2 well" >
                     <!--<div class="btn-group-vertical well" style="margin-left: 4%; width: 14%; position: fixed;" >-->
-                    <a href="<?php echo url_for('facture/new') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
                     <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
+                    <a href="<?php echo url_for('facture/new') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
                     <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouveau Tapis</a>
                     <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary leftBar"<i class="icon-plus-sign icon-white"></i><p class="logoClient" ></p>Nouveau Client</a>
                     <!--<a href="<?php echo url_for('ticket/imprimerTicket') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoPrint" ></p>Imprimer Ticket</a>-->

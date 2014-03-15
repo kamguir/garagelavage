@@ -7,6 +7,11 @@ propel:
     id_type_lavage: { phpName: IdTypeLavage, type: INTEGER, primaryKey: true, required: true, foreignTable: ref_type_lavage, foreignReference: id_type_lavage }
     id_facture: { phpName: IdFacture, type: INTEGER, primaryKey: true, required: true, foreignTable: tbl_facture, foreignReference: id_facture }
     _indexes: { FK_lnk_type_lavage_facture: [id_facture] }
+  lnk_user_profil:
+    _attributes: { phpName: LnkUserProfil, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true, foreignTable: tbl_user, foreignReference: user_id }
+    profil_id: { phpName: ProfilId, type: INTEGER, primaryKey: true, required: true, foreignTable: ref_profil, foreignReference: profil_id }
+    _indexes: { FK_lnk_user_profil2: [profil_id] }
   ref_couleur:
     _attributes: { phpName: RefCouleur, idMethod: native }
     id_couleur: { phpName: IdCouleur, type: INTEGER, primaryKey: true, required: true }
@@ -28,6 +33,10 @@ propel:
     _attributes: { phpName: RefNbrPortes, idMethod: native }
     id_nbr_portes: { phpName: IdNbrPortes, type: INTEGER, primaryKey: true, required: true }
     libellet_nbr_portes: { phpName: LibelletNbrPortes, type: VARCHAR, size: '50', required: false }
+  ref_profil:
+    _attributes: { phpName: RefProfil, idMethod: native }
+    profil_id: { phpName: ProfilId, type: INTEGER, primaryKey: true, required: true }
+    profil_libelle: { phpName: ProfilLibelle, type: VARCHAR, size: '200', required: false }
   ref_situation:
     _attributes: { phpName: RefSituation, idMethod: native }
     id_situation: { phpName: IdSituation, type: INTEGER, size: '10', primaryKey: true, required: true }
@@ -84,8 +93,13 @@ propel:
     _attributes: { phpName: TblObjectif, idMethod: native }
     id_objectif: { phpName: IdObjectif, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     objectif_date: { phpName: ObjectifDate, type: DATE, required: false }
-    objectif_fixe: { phpName: ObjectifFixe, type: INTEGER, required: false }
-    objectif_realise: { phpName: ObjectifRealise, type: INTEGER, required: false }
+    objectif_fixe: { phpName: ObjectifFixe, type: INTEGER, required: false, defaultValue: '0' }
+    objectif_realise: { phpName: ObjectifRealise, type: INTEGER, required: false, defaultValue: '0' }
+  tbl_param_portail:
+    _attributes: { phpName: TblParamPortail, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    param_lib: { phpName: ParamLib, type: VARCHAR, size: '127', required: false }
+    param_value: { phpName: ParamValue, type: VARCHAR, size: '255', required: false }
   tbl_tapis:
     _attributes: { phpName: TblTapis, idMethod: native }
     num_tapis: { phpName: NumTapis, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
@@ -100,6 +114,17 @@ propel:
     date_entree_garage: { phpName: DateEntreeGarage, type: TIMESTAMP, required: false }
     date_sortie_garage: { phpName: DateSortieGarage, type: TIMESTAMP, required: false }
     _indexes: { FK_tbl_ticket: [id_facture] }
+  tbl_user:
+    _attributes: { phpName: TblUser, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
+    user_nom: { phpName: UserNom, type: VARCHAR, size: '200', required: false }
+    user_prenom: { phpName: UserPrenom, type: VARCHAR, size: '200', required: false }
+    user_login: { phpName: UserLogin, type: VARCHAR, size: '200', required: false }
+    user_password: { phpName: UserPassword, type: VARCHAR, size: '200', required: false }
+    user_mail: { phpName: UserMail, type: VARCHAR, size: '200', required: false }
+    user_compte_active: { phpName: UserCompteActive, type: BOOLEAN, size: '1', required: false }
+    user_last_cnx: { phpName: UserLastCnx, type: TIMESTAMP, required: false }
+    user_nb_cnx: { phpName: UserNbCnx, type: INTEGER, required: false }
   tbl_voiture:
     _attributes: { phpName: TblVoiture, idMethod: native }
     id_voiture: { phpName: IdVoiture, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }

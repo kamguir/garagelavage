@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <title>
-            <?php include_slot('title', 'BackOffice LavageAyoub') ?>
+            <?php include_slot('title', 'BackOffice Gestion Lavage') ?>
         </title>
         <?php include_http_metas() ?>
         <?php include_metas() ?>

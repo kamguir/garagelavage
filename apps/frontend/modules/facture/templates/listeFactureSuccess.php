@@ -4,7 +4,7 @@
 
     <div class=" entitefiltre fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-corner-tl ui-corner-tr ui-helper-clearfix">
         <form method="POST" action="<?php echo url_for("facture/listeFacture") ?>">        
-            <?php echo $formFilter ?>        
+            <?php // echo $formFilter ?>        
         </form>
     </div>
 
@@ -12,7 +12,7 @@
         <table cellpadding="0" cellspacing="0" border="0" id="listeDesFacture" class="display">
             <thead>
                 <tr>
-                    <th><?php echo __('Id facture') ?></th>
+                    <!--<th><?php // echo __('Id facture') ?></th>-->
                     <th><?php echo __('voiture') ?></th>
                     <th><?php echo __('Immatruculation') ?></th>
                     <th><?php echo __('Employé') ?></th>
@@ -38,7 +38,7 @@
                 {
                     "sDom": 'R<"H"lfr>t<"F"ip<',
                     "bJQueryUI": true,
-                    "aaSorting": [[1, "asc"]],
+                    "aaSorting": [[6, "desc"]],
                     "oLanguage": datatablefr,
                     "bAutoWidth": false,
                     "bProcessing": true,

@@ -32,6 +32,19 @@
                     }
                 }
             }
+            if ($depensesNonPaye) {
+            foreach ($depensesNonPaye as $key => $value) {
+                ?>
+                        <div class="bs-example">
+                            <div class="alert alert-dismissable alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Warning! Facture <?php echo $value->getLibelleDepenses(); ?> du ( <?php echo $value->getDateDepenses(); ?> ) non payée</strong>
+                                <!--<span>objectif non atteint !</span>-->
+                            </div>
+                        </div>
+            <?php
+                }
+            }
             else {
                     ?>
                     <div class = "bs-example">

@@ -15,34 +15,51 @@
         <a href="<?php echo url_for('facture/listeFacture') ?>" class="btn btn-primary"><i class="icon-list icon-white"></i>Liste des Factures</a> 
     </div></br>
 </div>
+<div id="dialog-modal" title="Basic modal dialog">
+    <p>Veuillez patientez</p>
+</div>
 <script>
     $(function() {
         $("#tbl_facture_prix_lavage").attr('value', 00);
-
+        $("#dialog-modal").dialog({
+            autoOpen: false,
+            draggable: false,
+            resizeable: false,
+            modal: true
+        });
+//        $("#dialog-modal").dialog('destroy');
+//        
 // select tous les id qui  commence par tbl_voiture_libelleRefTypeLavage_                     
         $("[id^=tbl_facture_lnk_type_lavage_facture_list]").change(function() {
-//    var total  = parseFloat($('#tbl_facture_prix_lavage').val());
-//                                if (this.checked) {
+            
+        
             var idTypeLavage = $(this).val();
             $('#divFormMotif').load("<?php echo url_for("facture/checkTypeLavage?idTypeLavage=") ?>" + idTypeLavage, function(data) {
                 if (data)
                 {
+                    $("#dialog-modal").dialog("open");
                     old_val = $("#tbl_facture_prix_lavage").val();
                     if ($("[id^=tbl_facture_lnk_type_lavage_facture_list_" + idTypeLavage + "]").is(':checked')) {
+//                        $("#dialog-modal").dialog("open");
                         var resultat = Number(data) + Number(old_val);
                         $("#tbl_facture_prix_lavage").attr('value', resultat);
+                         $("#dialog-modal").dialog('close');
                     }
                     else
                     {
+//                       $("#dialog-modal").dialog("open");
                         var resultat2 = Number(old_val) - Number(data);
                         $("#tbl_facture_prix_lavage").attr('value', resultat2);
+                         $("#dialog-modal").dialog('close');
                     }
+//                    $("#dialog-modal").dialog('close');
                 }
                 else
                 {
                     alert('Attention ,le Type Lavage n\'existe pas .');
                 }
             });
+//            $("#dialog-modal").dialog('close');
         });
         $("#bouton_enregistrer").live("click", function() {
 //                                    $("#bouton_enregistrer").text('Traitement en cours...');
@@ -61,7 +78,7 @@
                 modifFacture.submit();
             }
         });
-        
+
         $("#tbl_facture_prix_lavage").live({
             click: function() {
                 var obj = $(this);

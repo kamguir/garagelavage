@@ -23,6 +23,7 @@ abstract class BaseTblClientForm extends BaseFormPropel
       'num_tel'         => new sfWidgetFormInputText(),
       'adresse_client'  => new sfWidgetFormInputText(),
       'fonction_client' => new sfWidgetFormInputText(),
+      'is_employe'      => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -35,6 +36,7 @@ abstract class BaseTblClientForm extends BaseFormPropel
       'num_tel'         => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'adresse_client'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'fonction_client' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'is_employe'      => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('tbl_client[%s]');

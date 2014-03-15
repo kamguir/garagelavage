@@ -34,7 +34,7 @@ class voitureActions extends sfActions {
         $tblVoitures = TblVoitureQuery::create()
                 ->joinTblClient()
                 ->joinRefMotorisation()
-                ->joinTblFacture()
+//                ->joinTblFacture()
                 ->mergeWith($formFilter->buildCriteria($sf_user->getAttribute("dataTableFilterVoitures", array())))
                 ->orderByDatatable($request->getParameter("iSortCol_0"), $request->getParameter("sSortDir_0", Criteria::ASC))
                 ->filterByDatatable($request->getParameter("sSearch"))
@@ -78,7 +78,6 @@ class voitureActions extends sfActions {
         $this->forward404Unless($tblVoiture, sprintf('Object tblVoiture does not exist (%s).', $request->getParameter('id_voiture')));
         $this->form = new tblVoitureForm($tblVoiture);
         $this->processForm($request, $this->form);
-
         $this->setTemplate('edit');
         $this->redirect('voiture/index');
     }
@@ -115,7 +114,7 @@ class voitureActions extends sfActions {
     }
 
     public function executeNewVoiture(sfWebRequest $request) {
-//var_dump($request->getParameterHolder());
+//var_dump($request->getParameterHolder());die;
         $this->listImmatriculations = TblVoitureQuery::create()
                 ->select(array(TblVoiturePeer::IMMATRICULATION))
                 ->orderByImmatriculation()
