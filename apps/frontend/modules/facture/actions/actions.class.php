@@ -25,8 +25,8 @@ class factureActions extends sfActions {
 
     public function executeNew(sfWebRequest $request) {
         $idVoiture = $request->getParameter('idVoiture');
-        $this->form = new tblFactureForm(null, array('idVoiture'=>$idVoiture));
-        
+        $this->form = new tblFactureForm(null, array('idVoiture' => $idVoiture));
+
         if ($request->isMethod('post')) {
             $this->form->bind($request->getParameter($this->form->getName()));
             if ($this->form->isValid()) {
@@ -68,9 +68,15 @@ class factureActions extends sfActions {
 
         $tblFacture = tblFactureQuery::create()->findPk($request->getParameter('id_facture'));
         $this->forward404Unless($tblFacture, sprintf('Object tblFacture does not exist (%s).', $request->getParameter('id_facture')));
-        $tblFacture->delete();
-
-        $this->redirect('facture/index');
+       
+        $lnkTypeLavageFacture = LnkTypeLavageFactureQuery::create()
+                ->filterByIdFacture($request->getParameter('id_facture'))
+                ->find();
+        if ($lnkTypeLavageFacture) {
+            $lnkTypeLavageFacture->delete();
+            $tblFacture->delete();
+        }
+        $this->redirect('facture/listeFacture');
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

@@ -32,6 +32,9 @@ class accueilActions extends sfActions {
         
         $this->objectifsFixes = TblObjectifQuery::create()
                 ->findOne();
+        
+        $this->depenses = TblDepensesQuery::create()
+                ->findOne();
 
         $this->tblTapis = TblTapisQuery::create()
                 ->findOne();

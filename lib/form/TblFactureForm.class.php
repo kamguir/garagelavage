@@ -14,7 +14,7 @@ class TblFactureForm extends BaseTblFactureForm {
         // id voiture
         $idVoiture = $this->getOption('idVoiture');
         $this->setWidget("id_voiture", new sfWidgetFormPropelChoice(array('model' => 'tblVoiture', 'add_empty' => false)));
-        $this->setValidator('id_voiture', new sfValidatorPropelChoice(array('model' => 'tblVoiture', 'required' => false)));
+        $this->setValidator('id_voiture', new sfValidatorPropelChoice(array('model' => 'tblVoiture', 'required' => true)));
         if ($idVoiture) {
             $this->widgetSchema['id_voiture']->setDefault($idVoiture);
         } else {
@@ -24,7 +24,7 @@ class TblFactureForm extends BaseTblFactureForm {
         // is_employé tblClient
         $qIdEmploye = TblClientQuery::Create()->filterByIsEmploye(1);
         $this->setWidget("id_employe", new sfWidgetFormPropelChoice(array('model' => 'tblClient', 'criteria' => $qIdEmploye, 'add_empty' => false)));
-        $this->setValidator('id_employe', new sfValidatorPropelChoice(array('model' => 'tblClient', 'required' => false)));
+        $this->setValidator('id_employe', new sfValidatorPropelChoice(array('model' => 'tblClient', 'required' => true)));
 
         $widgetDateTime = new orcaWidgetFormDateText(array('format' => 'Y-m-d H:i:s', 'form' => $this));
         $validatorDateTime = new orcaValidatorDateTimesText(array('with_time' => true, 'format' => 'd/m/Y H:i'));

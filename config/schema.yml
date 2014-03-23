@@ -59,6 +59,9 @@ propel:
     adresse_client: { phpName: AdresseClient, type: VARCHAR, size: '255', required: false }
     fonction_client: { phpName: FonctionClient, type: VARCHAR, size: '255', required: false }
     is_employe: { phpName: IsEmploye, type: BOOLEAN, size: '1', required: false, defaultValue: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
     _indexes: { FK_tbl_client: [situation] }
   tbl_depenses:
     _attributes: { phpName: TblDepenses, idMethod: native }
@@ -67,6 +70,9 @@ propel:
     id_ref_depenses: { phpName: IdRefDepenses, type: INTEGER, required: false, foreignTable: ref_depenses, foreignReference: id_ref_depenses }
     montant_depenses: { phpName: MontantDepenses, type: DOUBLE, required: false }
     etat_payement: { phpName: EtatPayement, type: BOOLEAN, size: '1', required: false, defaultValue: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
     _indexes: { FK_tbl_depances: [id_ref_depenses] }
     _uniques: { id_depances: [id_depenses] }
   tbl_employeur:
@@ -88,6 +94,9 @@ propel:
     commentaire_reglement: { phpName: CommentaireReglement, type: VARCHAR, size: '255', required: false }
     date_reglement: { phpName: DateReglement, type: TIMESTAMP, required: false }
     etat: { phpName: Etat, type: BOOLEAN, size: '1', required: false, defaultValue: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
     _indexes: { FK_voiture_tbl_reglement: [id_voiture], FK_tbl_facture: [id_employe] }
   tbl_objectif:
     _attributes: { phpName: TblObjectif, idMethod: native }
@@ -107,12 +116,18 @@ propel:
     prix_mettre_carre: { phpName: PrixMettreCarre, type: DOUBLE, required: false, defaultValue: '15' }
     montant_lavage_tapis: { phpName: MontantLavageTapis, type: DOUBLE, required: false }
     date_lavage_tapis: { phpName: DateLavageTapis, type: TIMESTAMP, required: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
   tbl_ticket:
     _attributes: { phpName: TblTicket, idMethod: native }
     id_ticket: { phpName: IdTicket, type: INTEGER, primaryKey: true, autoIncrement: true, required: true }
     id_facture: { phpName: IdFacture, type: INTEGER, required: false, foreignTable: tbl_facture, foreignReference: id_facture }
     date_entree_garage: { phpName: DateEntreeGarage, type: TIMESTAMP, required: false }
     date_sortie_garage: { phpName: DateSortieGarage, type: TIMESTAMP, required: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
     _indexes: { FK_tbl_ticket: [id_facture] }
   tbl_user:
     _attributes: { phpName: TblUser, idMethod: native }
@@ -137,4 +152,7 @@ propel:
     modele: { phpName: Modele, type: VARCHAR, size: '100', required: false }
     annee: { phpName: Annee, type: INTEGER, required: false }
     nb_visite: { phpName: NbVisite, type: INTEGER, required: false }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    updated_at: { phpName: UpdatedAt, type: TIMESTAMP, required: false }
+    deleted_at: { phpName: DeletedAt, type: TIMESTAMP, required: false }
     _indexes: { FK_tbl_voiture: [id_motorisation], FK_marque_tbl_voiture: [id_marque], FK_couleur2_tbl_voiture: [couleur], FK_tbl_voiture_client: [id_client], FK_tbl_voiture_nbr_portes: [nbr_portes] }

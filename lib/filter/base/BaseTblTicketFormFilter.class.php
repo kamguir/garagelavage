@@ -15,12 +15,18 @@ abstract class BaseTblTicketFormFilter extends BaseFormFilterPropel
       'id_facture'         => new sfWidgetFormPropelChoice(array('model' => 'TblFacture', 'add_empty' => true)),
       'date_entree_garage' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'date_sortie_garage' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'updated_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'deleted_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
       'id_facture'         => new sfValidatorPropelChoice(array('required' => false, 'model' => 'TblFacture', 'column' => 'id_facture')),
       'date_entree_garage' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'date_sortie_garage' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'created_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'updated_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'deleted_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
     $this->widgetSchema->setNameFormat('tbl_ticket_filters[%s]');
@@ -42,6 +48,9 @@ abstract class BaseTblTicketFormFilter extends BaseFormFilterPropel
       'id_facture'         => 'ForeignKey',
       'date_entree_garage' => 'Date',
       'date_sortie_garage' => 'Date',
+      'created_at'         => 'Date',
+      'updated_at'         => 'Date',
+      'deleted_at'         => 'Date',
     );
   }
 }

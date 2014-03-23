@@ -21,6 +21,48 @@ class TblDepenses extends BaseTblDepenses {
         return $this->getRefDepenses()->getLibelleDepenses();
     }
 
+    public function getDepensesTotalParWeek() {
+        $weekAcctuel = 'WEEK(' . TblDepensesPeer::DATE_DEPENSES . ')=WEEK(CURDATE())';
+        $anneeAcctuelle = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . date('Y');
+
+        return (double) TblDepensesQuery::create()
+                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $weekAcctuel, Criteria::CUSTOM)
+                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $anneeAcctuelle, Criteria::CUSTOM)
+                        ->withColumn('SUM(' . TblDepensesPeer::MONTANT_DEPENSES . ')', "montantDepenses")
+                        ->select('montantDepenses')
+                        ->findOne();
+        echo Propel::getConnection()->getLastExecutedQuery();
+        die;
+    }
+
+    public function getDepensesTotalParDate($date) {
+        $jour = date('d');
+        $mois = date('m');
+        $annee = date('Y');
+        if ($date == $jour) {
+            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $jour;
+            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $mois;
+            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
+        } if ($date == $mois) {
+            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 31';
+            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $mois;
+            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
+        } if ($date == $annee) {
+            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 31';
+            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 12';
+            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
+        }
+        return (double) TblDepensesQuery::create()
+                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $jourCourant, Criteria::CUSTOM)
+                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $moisCourant, Criteria::CUSTOM)
+                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $anneeCourante, Criteria::CUSTOM)
+                        ->withColumn('SUM(' . TblDepensesPeer::MONTANT_DEPENSES . ')', "montantDepenses")
+                        ->select('montantDepenses')
+                        ->findOne();
+//         echo Propel::getConnection()->getLastExecutedQuery();
+//        die;
+    }
+
 }
 
 // TblDepenses

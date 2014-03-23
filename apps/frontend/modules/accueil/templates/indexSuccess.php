@@ -54,10 +54,10 @@
                             <td><span class="badge"><?php echo $montanTotalAnnee = $montantTotalParAnnee + $montantTapisParAnnee; ?></span></td>
                         </tr>
                         <tr>
-                            <?php ($tblFactures) ? $depensesTotalParJour = $tblFactures->getDepensesTotalParDate(date('d')) : $depensesTotalParJour = 0; ?>
-                            <?php ($tblFactures) ? $depensesTotalParMois = $tblFactures->getDepensesTotalParDate(date('m')) : $depensesTotalParMois = 0; ?>
-                            <?php ($tblFactures) ? $depensesTotalParWeek = $tblFactures->getDepensesTotalParWeek() : $depensesTotalParWeek = 0; ?>
-                            <?php ($tblFactures) ? $depensesTotalParAnnee = $tblFactures->getDepensesTotalParDate(date('Y')) : $depensesTotalParAnnee = 0; ?>
+                            <?php ($depenses) ? $depensesTotalParJour = $depenses->getDepensesTotalParDate(date('d')) : $depensesTotalParJour = 0; ?>
+                            <?php ($depenses) ? $depensesTotalParMois = $depenses->getDepensesTotalParDate(date('m')) : $depensesTotalParMois = 0; ?>
+                            <?php ($depenses) ? $depensesTotalParWeek = $depenses->getDepensesTotalParWeek() : $depensesTotalParWeek = 0; ?>
+                            <?php ($depenses) ? $depensesTotalParAnnee = $depenses->getDepensesTotalParDate(date('Y')) : $depensesTotalParAnnee = 0; ?>
                             <td>Les Sorties (DH) :</td>
                             <td><span class="badge"><?php echo $depensesTotalJour = $depensesTotalParJour; ?></span></td>
                             <td><span class="badge"><?php echo $depensesSemaine = $depensesTotalParWeek; ?></span></td>
@@ -233,22 +233,22 @@ foreach ($tblClients as $key => $value) {
                     type: 'pie',
                     name: 'Browser share',
                     data: [
-                        ['audi', <?php echo getNbrVoiture(4) ?>],
+                        ['audi', <?php echo getNbrVoiture(2) ?>],
                         {
                             name: 'renault',
-                            y: <?php echo getNbrVoiture(48) ?>,
+                            y: <?php echo getNbrVoiture(29) ?>,
                             sliced: true,
                             selected: true
                         },
-                        ['citroen', <?php echo getNbrVoiture(11) ?>],
-                        ['fiat', <?php echo getNbrVoiture(16) ?>],
-                        ['ford', <?php echo getNbrVoiture(17) ?>],
-                        ['honda', <?php echo getNbrVoiture(19) ?>],
-                        ['hyundai', <?php echo getNbrVoiture(20) ?>],
-                        ['kia', <?php echo getNbrVoiture(25) ?>],
-                        ['mercedes', <?php echo getNbrVoiture(37) ?>],
-                        ['peugeot', <?php echo getNbrVoiture(44) ?>],
-                        ['toyota', <?php echo getNbrVoiture(61) ?>]
+                        ['citroen', <?php echo getNbrVoiture(5) ?>],
+                        ['fiat', <?php echo getNbrVoiture(8) ?>],
+                        ['ford', <?php echo getNbrVoiture(9) ?>],
+                        ['honda', <?php echo getNbrVoiture(10) ?>],
+                        ['hyundai', <?php echo getNbrVoiture(11) ?>],
+                        ['kia', <?php echo getNbrVoiture(15) ?>],
+                        ['mercedes', <?php echo getNbrVoiture(22) ?>],
+                        ['peugeot', <?php echo getNbrVoiture(26) ?>],
+                        ['toyota', <?php echo getNbrVoiture(35) ?>]
                     ]
                 }]
         });

@@ -48,7 +48,7 @@ class TblClientForm extends BaseTblClientForm
             'age_client' => 'Age :',
             'num_tel' => 'Téléphone :',
             'adresse_client' => 'Adresse :',
-            'is_employe' => 'c\'est employe :',
+            'is_employe' => 'c\'est employe?',
             'fonction_client' => 'Fonction :'
         ));
   }

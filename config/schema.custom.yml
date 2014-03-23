@@ -1,0 +1,26 @@
+propel:
+  
+  tbl_client:
+    _propel_behaviors:
+      timestampable:
+      soft_delete:
+
+  tbl_voiture:
+    _propel_behaviors:
+      soft_delete:
+  
+  tbl_ticket:
+    _propel_behaviors:
+      soft_delete:
+
+  tbl_tapis:
+    _propel_behaviors:
+      soft_delete:
+  
+  tbl_facture:
+    _propel_behaviors:
+      soft_delete:
+  
+  tbl_depenses:
+    _propel_behaviors:
+      soft_delete:

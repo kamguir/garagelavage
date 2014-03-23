@@ -18,6 +18,9 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
       'commentaire_reglement'        => new sfWidgetFormFilterInput(),
       'date_reglement'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'etat'                         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'created_at'                   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'updated_at'                   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'deleted_at'                   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'lnk_type_lavage_facture_list' => new sfWidgetFormPropelChoice(array('model' => 'RefTypeLavage', 'add_empty' => true)),
     ));
 
@@ -28,6 +31,9 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
       'commentaire_reglement'        => new sfValidatorPass(array('required' => false)),
       'date_reglement'               => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'etat'                         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'created_at'                   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'updated_at'                   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'deleted_at'                   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'lnk_type_lavage_facture_list' => new sfValidatorPropelChoice(array('model' => 'RefTypeLavage', 'required' => false)),
     ));
 
@@ -78,6 +84,9 @@ abstract class BaseTblFactureFormFilter extends BaseFormFilterPropel
       'commentaire_reglement'        => 'Text',
       'date_reglement'               => 'Date',
       'etat'                         => 'Boolean',
+      'created_at'                   => 'Date',
+      'updated_at'                   => 'Date',
+      'deleted_at'                   => 'Date',
       'lnk_type_lavage_facture_list' => 'ManyKey',
     );
   }

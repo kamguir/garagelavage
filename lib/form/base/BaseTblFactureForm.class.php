@@ -21,6 +21,9 @@ abstract class BaseTblFactureForm extends BaseFormPropel
       'commentaire_reglement'        => new sfWidgetFormInputText(),
       'date_reglement'               => new sfWidgetFormDateTime(),
       'etat'                         => new sfWidgetFormInputCheckbox(),
+      'created_at'                   => new sfWidgetFormDateTime(),
+      'updated_at'                   => new sfWidgetFormDateTime(),
+      'deleted_at'                   => new sfWidgetFormDateTime(),
       'lnk_type_lavage_facture_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'RefTypeLavage')),
     ));
 
@@ -32,6 +35,9 @@ abstract class BaseTblFactureForm extends BaseFormPropel
       'commentaire_reglement'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'date_reglement'               => new sfValidatorDateTime(array('required' => false)),
       'etat'                         => new sfValidatorBoolean(array('required' => false)),
+      'created_at'                   => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'                   => new sfValidatorDateTime(array('required' => false)),
+      'deleted_at'                   => new sfValidatorDateTime(array('required' => false)),
       'lnk_type_lavage_facture_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'RefTypeLavage', 'required' => false)),
     ));
 

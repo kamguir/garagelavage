@@ -18,6 +18,9 @@ abstract class BaseTblTicketForm extends BaseFormPropel
       'id_facture'         => new sfWidgetFormPropelChoice(array('model' => 'TblFacture', 'add_empty' => true)),
       'date_entree_garage' => new sfWidgetFormDateTime(),
       'date_sortie_garage' => new sfWidgetFormDateTime(),
+      'created_at'         => new sfWidgetFormDateTime(),
+      'updated_at'         => new sfWidgetFormDateTime(),
+      'deleted_at'         => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -25,6 +28,9 @@ abstract class BaseTblTicketForm extends BaseFormPropel
       'id_facture'         => new sfValidatorPropelChoice(array('model' => 'TblFacture', 'column' => 'id_facture', 'required' => false)),
       'date_entree_garage' => new sfValidatorDateTime(array('required' => false)),
       'date_sortie_garage' => new sfValidatorDateTime(array('required' => false)),
+      'created_at'         => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'         => new sfValidatorDateTime(array('required' => false)),
+      'deleted_at'         => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('tbl_ticket[%s]');

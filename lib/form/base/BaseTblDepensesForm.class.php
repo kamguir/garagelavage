@@ -19,6 +19,9 @@ abstract class BaseTblDepensesForm extends BaseFormPropel
       'id_ref_depenses'  => new sfWidgetFormPropelChoice(array('model' => 'RefDepenses', 'add_empty' => true)),
       'montant_depenses' => new sfWidgetFormInputText(),
       'etat_payement'    => new sfWidgetFormInputCheckbox(),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
+      'deleted_at'       => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -27,6 +30,9 @@ abstract class BaseTblDepensesForm extends BaseFormPropel
       'id_ref_depenses'  => new sfValidatorPropelChoice(array('model' => 'RefDepenses', 'column' => 'id_ref_depenses', 'required' => false)),
       'montant_depenses' => new sfValidatorNumber(array('required' => false)),
       'etat_payement'    => new sfValidatorBoolean(array('required' => false)),
+      'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'       => new sfValidatorDateTime(array('required' => false)),
+      'deleted_at'       => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

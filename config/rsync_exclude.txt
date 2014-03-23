@@ -24,7 +24,14 @@ _darcs
 .svn
 CVS
 
+# Project files
+/cache/*
+/log/*
+
+
+
 #karimProjet
 
 databases.yml
 /bd_garage_lavage.sql
+/*.bat

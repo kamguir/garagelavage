@@ -4,17 +4,17 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id objectif</th>
-                <th>Objectif date</th>
-                <th>Objectif fixe</th>
+                <!--<th>Id objectif</th>-->
+                <th>Date Objectif</th>
+                <th>Objectif fixé</th>
                 <th>Objectif realisé</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($pager->getResults() as $tblObjectif): /* @var $tblObjectif TblObjectif */?>
                 <tr>
-                    <td><a href="<?php echo url_for('objectifs/edit?id_objectif=' . $tblObjectif->getIdObjectif()) ?>"><?php echo $tblObjectif->getIdObjectif() ?></a></td>
-                    <td><?php echo $tblObjectif->getObjectifDate() ?></td>
+                    <!--<td><a href="<?php echo url_for('objectifs/edit?id_objectif=' . $tblObjectif->getIdObjectif()) ?>"><?php echo $tblObjectif->getIdObjectif() ?></a></td>-->
+                    <td><a href="<?php echo url_for('objectifs/edit?id_objectif=' . $tblObjectif->getIdObjectif()) ?>"><?php echo $tblObjectif->getObjectifDate() ?></a></td>
                     <td><?php echo $tblObjectif->getObjectifFixe() ?></td>
                     <td><?php echo $tblObjectif->getObjectifRealise() ?></td>
                 </tr>

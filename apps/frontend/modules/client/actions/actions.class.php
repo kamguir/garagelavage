@@ -10,7 +10,7 @@
 class clientActions extends sfActions {
 
     public function executeIndex(sfWebRequest $request) {
-        $this->tblClients = tblClientQuery::create()->find();
+        $this->tblClients = TblClientQuery::create()->find();
 
         $pager = new sfPropelPager('TblClient', sfConfig::get('app_max_linge'));
         $pager->setCriteria(TblClientQuery::create());
@@ -20,7 +20,7 @@ class clientActions extends sfActions {
     }
 
     public function executeNew(sfWebRequest $request) {
-        $this->form = new tblClientForm();
+        $this->form = new TblClientForm();
         if ($request->isMethod('post')) {
             $this->form->bind($request->getParameter($this->form->getName()));
             if ($this->form->isValid()) {
@@ -33,7 +33,7 @@ class clientActions extends sfActions {
     public function executeCreate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-        $this->form = new tblClientForm();
+        $this->form = new TblClientForm();
 
         $this->processForm($request, $this->form);
 
@@ -41,16 +41,16 @@ class clientActions extends sfActions {
     }
 
     public function executeEdit(sfWebRequest $request) {
-        $tblClient = tblClientQuery::create()->findPk($request->getParameter('id_client'));
+        $tblClient = TblClientQuery::create()->findPk($request->getParameter('id_client'));
         $this->forward404Unless($tblClient, sprintf('Object tblClient does not exist (%s).', $request->getParameter('id_client')));
-        $this->form = new tblClientForm($tblClient);
+        $this->form = new TblClientForm($tblClient);
     }
 
     public function executeUpdate(sfWebRequest $request) {
         $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-        $tblClient = tblClientQuery::create()->findPk($request->getParameter('id_client'));
+        $tblClient = TblClientQuery::create()->findPk($request->getParameter('id_client'));
         $this->forward404Unless($tblClient, sprintf('Object tblClient does not exist (%s).', $request->getParameter('id_client')));
-        $this->form = new tblClientForm($tblClient);
+        $this->form = new TblClientForm($tblClient);
 
         $this->processForm($request, $this->form);
 
@@ -59,11 +59,10 @@ class clientActions extends sfActions {
 
     public function executeDelete(sfWebRequest $request) {
         $request->checkCSRFProtection();
-
         $tblClient = tblClientQuery::create()->findPk($request->getParameter('id_client'));
         $this->forward404Unless($tblClient, sprintf('Object tblClient does not exist (%s).', $request->getParameter('id_client')));
-        $tblClient->delete();
 
+        $tblClient->delete();
         $this->redirect('client/index');
     }
 

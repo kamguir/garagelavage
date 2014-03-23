@@ -60,34 +60,6 @@ class TblFacture extends BaseTblFacture {
         die;
     }
 
-    public function getDepensesTotalParDate($date) {
-        $jour = date('d');
-        $mois = date('m');
-        $annee = date('Y');
-        if ($date == $jour) {
-            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $jour;
-            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $mois;
-            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
-        } if ($date == $mois) {
-            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $mois;
-            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
-        } if ($date == $annee) {
-            $jourCourant = 'DAY(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 31';
-            $moisCourant = 'MONTH(' . TblDepensesPeer::DATE_DEPENSES . ')between 1 and 12';
-            $anneeCourante = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . $annee;
-        }
-        return (double) TblDepensesQuery::create()
-                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $jourCourant, Criteria::CUSTOM)
-                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $moisCourant, Criteria::CUSTOM)
-                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $anneeCourante, Criteria::CUSTOM)
-                        ->withColumn('SUM(' . TblDepensesPeer::MONTANT_DEPENSES . ')', "montantDepenses")
-                        ->select('montantDepenses')
-                        ->findOne();
-//         echo Propel::getConnection()->getLastExecutedQuery();
-//        die;
-    }
-
     public function getMontantTotalParWeek() {
         $weekAcctuel = 'WEEK(' . TblFacturePeer::DATE_REGLEMENT . ')=WEEK(CURDATE())';
         $anneeAcctuelle = 'YEAR(' . TblFacturePeer::DATE_REGLEMENT . ')=' . date('Y');
@@ -100,20 +72,6 @@ class TblFacture extends BaseTblFacture {
 //                        ->endUse()
                         ->withColumn('SUM(' . TblFacturePeer::PRIX_LAVAGE . ')', "montantTotal")
                         ->select('montantTotal')
-                        ->findOne();
-        echo Propel::getConnection()->getLastExecutedQuery();
-        die;
-    }
-
-    public function getDepensesTotalParWeek() {
-        $weekAcctuel = 'WEEK(' . TblDepensesPeer::DATE_DEPENSES . ')=WEEK(CURDATE())';
-        $anneeAcctuelle = 'YEAR(' . TblDepensesPeer::DATE_DEPENSES . ')=' . date('Y');
-
-        return (double) TblDepensesQuery::create()
-                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $weekAcctuel, Criteria::CUSTOM)
-                        ->addAnd(TblDepensesPeer::DATE_DEPENSES, $anneeAcctuelle, Criteria::CUSTOM)
-                        ->withColumn('SUM(' . TblDepensesPeer::MONTANT_DEPENSES . ')', "montantDepenses")
-                        ->select('montantDepenses')
                         ->findOne();
         echo Propel::getConnection()->getLastExecutedQuery();
         die;
@@ -143,10 +101,18 @@ class TblFacture extends BaseTblFacture {
         if ($this->getTblClient()) {
             $nomEmploye = $this->getTblClient()->getLibelle();
         }
-        $pieces = explode("/",  $this->getTblVoiture()->getImmatriculation());
+        if ($this->getTblVoiture()) {
+           $pieces = explode("/",  $this->getTblVoiture()->getImmatriculation());
+           $marqueVoiture = $this->getTblVoiture()->getRefMarque()->getMarqueLibelle();
+        }else{
+            $imat = '0000/0/00';
+            $pieces = explode("/",  $imat);
+             $marqueVoiture = '--';
+        }
+        
         return array(
 //            $this->getIdFacture(),
-            $this->getTblVoiture()->getRefMarque()->getMarqueLibelle(),
+            $marqueVoiture,
             '<p dir=\'rtl\' lang=\'ar\'>'.$pieces[2].'/'.$pieces[1].'/'.$pieces[0].'</p>',
             $nomEmploye,
             $this->getPrixLavage(),

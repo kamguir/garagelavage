@@ -17,7 +17,7 @@
  */
 class RefMarque extends BaseRefMarque {
 
-    const IDFORD = 17;
+    const IDFORD = 9;
     
     public function __toString() {
         return $this->getMarqueLibelle();

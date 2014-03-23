@@ -173,8 +173,14 @@ $listImmat = implode("','", $sf_data->getRaw('listImmatriculations'));
 ?>
 <div id="divFormMotif" style="visibility: hidden;" ></div>
 <script>
+    
+
+    
                             $(function() {
-//    définir masque pour les input
+//    $("#bouton_enregistrer").live("click",function(){
+//     $('#header').notif({title:"Attention", content:'Merci de sélectionner un agent.', timeout: 6000, cls: "warning"});
+//    });
+        //    définir masque pour les input
                                 var availableTags = ['<?php echo $listImmat ?>'];
                                 $("#input").autocomplete({
                                     source: availableTags

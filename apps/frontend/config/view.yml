@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, bootstrap/bootstrap.css, bootstrap/bootstrap.min.css ,bootstrap/bootstrap-responsive.css, bootstrap/bootstrap-responsive.min.css]
+  stylesheets:    [main.css, bootstrap/bootstrap.css, bootstrap/bootstrap.min.css ,bootstrap/bootstrap-responsive.css, bootstrap/bootstrap-responsive.min.css , notif.css]
 
-  javascripts:    [ bootstrap/bootstrap.js ,jquery.min.js , bootstrap/bootstrap.min.js, jquery-1.5.2.min.js, jquery-ui-1.8.17.custom.min.js, jquery-ui-i18n.js, tiny_mce.js, FR_fr.js]
+  javascripts:    [ bootstrap/bootstrap.js ,jquery.min.js , bootstrap/bootstrap.min.js, jquery-1.5.2.min.js, jquery-ui-1.8.17.custom.min.js, jquery-ui-i18n.js, tiny_mce.js, FR_fr.js ,jquery.orca.notif.js , mustache.js]
 
   has_layout:     true
   layout:         layout
