@@ -19,7 +19,6 @@ abstract class BaseTblTicketForm extends BaseFormPropel
       'date_entree_garage' => new sfWidgetFormDateTime(),
       'date_sortie_garage' => new sfWidgetFormDateTime(),
       'created_at'         => new sfWidgetFormDateTime(),
-      'updated_at'         => new sfWidgetFormDateTime(),
       'deleted_at'         => new sfWidgetFormDateTime(),
     ));
 
@@ -29,7 +28,6 @@ abstract class BaseTblTicketForm extends BaseFormPropel
       'date_entree_garage' => new sfValidatorDateTime(array('required' => false)),
       'date_sortie_garage' => new sfValidatorDateTime(array('required' => false)),
       'created_at'         => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'         => new sfValidatorDateTime(array('required' => false)),
       'deleted_at'         => new sfValidatorDateTime(array('required' => false)),
     ));
 

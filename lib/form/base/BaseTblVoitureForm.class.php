@@ -25,7 +25,6 @@ abstract class BaseTblVoitureForm extends BaseFormPropel
       'annee'           => new sfWidgetFormInputText(),
       'nb_visite'       => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
-      'updated_at'      => new sfWidgetFormDateTime(),
       'deleted_at'      => new sfWidgetFormDateTime(),
     ));
 
@@ -41,7 +40,6 @@ abstract class BaseTblVoitureForm extends BaseFormPropel
       'annee'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'nb_visite'       => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
       'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
     ));
 

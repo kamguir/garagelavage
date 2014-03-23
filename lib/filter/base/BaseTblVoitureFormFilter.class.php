@@ -22,7 +22,6 @@ abstract class BaseTblVoitureFormFilter extends BaseFormFilterPropel
       'annee'           => new sfWidgetFormFilterInput(),
       'nb_visite'       => new sfWidgetFormFilterInput(),
       'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'deleted_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
@@ -37,7 +36,6 @@ abstract class BaseTblVoitureFormFilter extends BaseFormFilterPropel
       'annee'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'nb_visite'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'updated_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'deleted_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
@@ -67,7 +65,6 @@ abstract class BaseTblVoitureFormFilter extends BaseFormFilterPropel
       'annee'           => 'Number',
       'nb_visite'       => 'Number',
       'created_at'      => 'Date',
-      'updated_at'      => 'Date',
       'deleted_at'      => 'Date',
     );
   }

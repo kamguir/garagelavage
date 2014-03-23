@@ -2,9 +2,8 @@ propel:
   
   tbl_client:
     _propel_behaviors:
-      timestampable:
       soft_delete:
-
+          
   tbl_voiture:
     _propel_behaviors:
       soft_delete:

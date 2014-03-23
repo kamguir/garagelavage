@@ -87,21 +87,7 @@ class voitureActions extends sfActions {
 
         $tblVoiture = tblVoitureQuery::create()->findPk($request->getParameter('id_voiture'));
         $this->forward404Unless($tblVoiture, sprintf('Object tblVoiture does not exist (%s).', $request->getParameter('id_voiture')));
-
-        $tblFacture = TblFactureQuery::create()
-                ->filterByIdVoiture($request->getParameter('id_voiture'))
-                ->findOne();
-
-        if ($tblFacture) {
-            //        var_dump($tblFacture->getIdFacture());die;
-            $lnkTypeLavageFacture = LnkTypeLavageFactureQuery::create()
-                    ->filterByIdFacture($tblFacture->getIdFacture())
-                    ->find();
-            if ($lnkTypeLavageFacture) {
-                $lnkTypeLavageFacture->delete();
-                $tblVoiture->delete();
-            }
-        }
+        $tblVoiture->delete();
         $this->redirect('voiture/index');
     }
 

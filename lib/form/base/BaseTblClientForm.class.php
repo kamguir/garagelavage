@@ -25,7 +25,6 @@ abstract class BaseTblClientForm extends BaseFormPropel
       'fonction_client' => new sfWidgetFormInputText(),
       'is_employe'      => new sfWidgetFormInputCheckbox(),
       'created_at'      => new sfWidgetFormDateTime(),
-      'updated_at'      => new sfWidgetFormDateTime(),
       'deleted_at'      => new sfWidgetFormDateTime(),
     ));
 
@@ -41,7 +40,6 @@ abstract class BaseTblClientForm extends BaseFormPropel
       'fonction_client' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'is_employe'      => new sfValidatorBoolean(array('required' => false)),
       'created_at'      => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'      => new sfValidatorDateTime(array('required' => false)),
       'deleted_at'      => new sfValidatorDateTime(array('required' => false)),
     ));
 

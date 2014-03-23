@@ -20,7 +20,6 @@ abstract class BaseTblTapisForm extends BaseFormPropel
       'montant_lavage_tapis' => new sfWidgetFormInputText(),
       'date_lavage_tapis'    => new sfWidgetFormDateTime(),
       'created_at'           => new sfWidgetFormDateTime(),
-      'updated_at'           => new sfWidgetFormDateTime(),
       'deleted_at'           => new sfWidgetFormDateTime(),
     ));
 
@@ -31,7 +30,6 @@ abstract class BaseTblTapisForm extends BaseFormPropel
       'montant_lavage_tapis' => new sfValidatorNumber(array('required' => false)),
       'date_lavage_tapis'    => new sfValidatorDateTime(array('required' => false)),
       'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'           => new sfValidatorDateTime(array('required' => false)),
       'deleted_at'           => new sfValidatorDateTime(array('required' => false)),
     ));
 
