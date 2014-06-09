@@ -1,7 +1,9 @@
 <div class="container" >  
     <div class="col-lg-6">
         <div class="well">
-            <h1>Nouvelle Facture</h1>
+            <fieldset>
+                    <legend>Nouvelle Facture</legend>
+            </fieldset>
             <?php include_partial('form', array('form' => $form)) ?>
         </div>
     </div>

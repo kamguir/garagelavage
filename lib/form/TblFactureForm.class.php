@@ -57,14 +57,35 @@ class TblFactureForm extends BaseTblFactureForm {
         //etat 
         $this->widgetSchema['etat'] = new sfWidgetFormInputCheckbox();
         $this->setDefault('etat', true);
-        
-         $this->getWidgetSchema()->setLabels(array(
-                'date_reglement' => 'Choisir Date :',
-                'is_employe' => 'Nom Employé :',
-                'prix_lavage' => 'Prix lavage :',
-                'lnk_type_lavage_facture_list' => 'Type Lavage :'
-            ));
-         
-    }
-}
 
+        $this->getWidgetSchema()->setLabels(array(
+            'date_reglement' => 'Choisir Date :',
+            'is_employe' => 'Nom Employé :',
+            'prix_lavage' => 'Prix lavage :',
+            'lnk_type_lavage_facture_list' => 'Type Lavage :'
+        ));
+    }
+
+    public function save($con = null) {
+//        var_dump($this->getValue('num1Matricule'));
+//        die;
+//        var_dump($this->getValues());
+//        die;
+        parent::save($con);
+        // ajouter facture a objectif realisé tbl_objectif
+        $mois = date('m');
+        $annee = date('Y');
+        $moisCourant = 'MONTH(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $mois;
+        $anneeCourante = 'YEAR(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $annee;
+        $monObjectif = TblObjectifQuery::create()
+                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $moisCourant, Criteria::CUSTOM)
+                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $anneeCourante, Criteria::CUSTOM)
+                ->findOne();
+        if ($monObjectif) {
+            $monObjectifRealise = $monObjectif->getObjectifRealise();
+            $monObjectif->setObjectifRealise($monObjectifRealise + 1);
+            $monObjectif->save();
+        }
+    }
+
+}

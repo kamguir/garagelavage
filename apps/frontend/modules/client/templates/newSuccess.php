@@ -96,7 +96,7 @@
             <h3 class="page-header">Actions</h3>
             <div>
                 <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i>Ajouter Client</a> 
-                <a href="<?php echo url_for('client/index') ?>" class="btn btn-primary"><i class="icon-list icon-white"></i>Liste des Clients</a> 
+                <a href="<?php echo url_for('client/listeClients') ?>" class="btn btn-primary"><i class="icon-list icon-white"></i>Liste des Clients</a> 
             </div></br>
         </div>
     </div>

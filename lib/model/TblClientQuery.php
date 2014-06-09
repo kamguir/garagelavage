@@ -19,4 +19,40 @@
  */
 class TblClientQuery extends BaseTblClientQuery {
 
+    public function filterByDatatable($searchs = "") {
+        if ($searchs == '')
+            return $this;
+        $arrayCondition = $arrayCombine = array();
+        foreach (explode(" ", $searchs) as $i => $search) {
+            $search = '%' . $search . '%';
+
+            $this->condition('nomClient' . $i, 'TblClient.NomClient LIKE ?', $search)
+                    ->condition('prenomClient' . $i, 'TblClient.PrenomClient LIKE ?', $search)
+                    ->condition('ageClient' . $i, 'TblClient.AgeClient LIKE ?', $search)
+                    ->condition('NumTel' . $i, 'TblClient.NumTel LIKE ?', $search);
+
+            $arrayCondition[] = 'nomClient' . $i;
+            $arrayCondition[] = 'prenomClient' . $i;
+            $arrayCondition[] = 'ageClient' . $i;
+            $arrayCondition[] = 'NumTel' . $i;
+
+            $this->combine($arrayCondition, 'or', "combine" . $i);
+            $arrayCombine[] = "combine" . $i;
+            $arrayCondition = array();
+        }
+
+        return $this->combine($arrayCombine, 'and');
+    }
+
+    public function orderByDatatable($col, $order) {
+        switch ($col) {
+            case 0:
+                $this->orderByNomClient($order);
+                break;
+            case 1:
+                $this->orderByPrenomClient($order);
+                break;
+        }
+        return $this;
+    }
 } // TblClientQuery

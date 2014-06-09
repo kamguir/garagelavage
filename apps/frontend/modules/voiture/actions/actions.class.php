@@ -120,8 +120,8 @@ class voitureActions extends sfActions {
                 ->groupByImmatriculation()
                 ->find()
                 ->toArray();
-
-        $this->form = new tblVoitureForm(null, array('url' => $this->getController()->genUrl('voiture/ajax')));
+        $idClient = $request->getParameter('id_client');
+        $this->form = new tblVoitureForm(null, array('url' => $this->getController()->genUrl('voiture/ajax'), 'id_client' => $idClient));
         if ($request->isMethod('post')) {
             $this->form->bind($request->getParameter($this->form->getName()));
             if ($this->form->isValid()) {

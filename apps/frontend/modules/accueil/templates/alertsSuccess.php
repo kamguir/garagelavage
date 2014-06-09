@@ -19,7 +19,7 @@
             if ($objectifsFixes) {
             foreach ($months as $key => $value) {
                 
-                    if ($objectifsFixes->getObjectifFixByDate($key) > $objectifsFixes->getObjectifRealiseByDate($key)) {
+                    if ($objectifsFixes->getObjectifFixByDate($key) > $objectifsFixes->getObjectifRealiseByDate($key) && date('d') >= '20' ) {
                         ?>
                         <div class="bs-example">
                             <div class="alert alert-dismissable alert-warning">

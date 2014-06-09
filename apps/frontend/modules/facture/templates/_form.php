@@ -37,23 +37,24 @@
                 </td>
             </tr>
             <tr>
+                <th><?php echo $form['lnk_type_lavage_facture_list']->renderLabel() ?></th>
+                <td>
+                    <?php echo $form['lnk_type_lavage_facture_list']->renderError() ?>
+                    <?php echo $form['lnk_type_lavage_facture_list'] ?>
+                </td>
+            </tr>
+            <tr>
                 <th><?php echo $form['prix_lavage']->renderLabel() ?></th>
                 <td>
                     <?php echo $form['prix_lavage']->renderError() ?>
                     <?php echo $form['prix_lavage'] ?>
                 </td>
-            <tr>
+            </tr>
+                        <tr>
                 <td>
                 </td>
                 <td style="float: right;">
                     <span id="result"></span>
-                </td>
-            </tr>
-            <tr>
-                <th><?php echo $form['lnk_type_lavage_facture_list']->renderLabel() ?></th>
-                <td>
-                    <?php echo $form['lnk_type_lavage_facture_list']->renderError() ?>
-                    <?php echo $form['lnk_type_lavage_facture_list'] ?>
                 </td>
             </tr>
             <tr>

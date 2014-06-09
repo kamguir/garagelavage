@@ -62,8 +62,8 @@
                 <!--col-xs-6 col-sm-3-->
                 <div class="col-xs-6 col-md-2 well" >
                     <!--<div class="btn-group-vertical well" style="margin-left: 4%; width: 14%; position: fixed;" >-->
-                    <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
                     <a href="<?php echo url_for('facture/new') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoFacture" ></p>Gection Factures</a>
+                    <a href="<?php echo url_for('voiture/newVoiture') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoVoiture" ></p>Nouvelle Voiture</a>
                     <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoTapis" ></p>Nouveau Tapis</a>
                     <a href="<?php echo url_for('client/new') ?>" class="btn btn-primary leftBar"<i class="icon-plus-sign icon-white"></i><p class="logoClient" ></p>Nouveau Client</a>
                     <!--<a href="<?php echo url_for('ticket/imprimerTicket') ?>" class="btn btn-primary leftBar" <i class="icon-plus-sign icon-white"></i><p class="logoPrint" ></p>Imprimer Ticket</a>-->

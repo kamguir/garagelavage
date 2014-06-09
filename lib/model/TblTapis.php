@@ -97,6 +97,18 @@ class TblTapis extends BaseTblTapis {
         echo Propel::getConnection()->getLastExecutedQuery();
         die;
     }
+
+    public function toArrayString() {
+
+        return array(
+            $this->getNumTapis(),
+            $this->getTailleTapis(),
+            $this->getMontantLavageTapis(),
+            $this->getDateLavageTapis(),
+            "DT_RowId" => "row_" . $this->getNumTapis()
+        );
+    }
+
 }
 
 // TblTapis

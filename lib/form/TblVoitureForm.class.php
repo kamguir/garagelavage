@@ -29,11 +29,18 @@ class TblVoitureForm extends BaseTblVoitureForm {
             $this->validatorSchema['immatriculation'] = new sfValidatorString();
         }
 
+        // id Client
+        $idClient = $this->getOption('id_client');
+
         // juste les Clients
         $qIdClient = TblClientQuery::Create()->filterByIsEmploye(0);
         $this->setWidget("id_client", new sfWidgetFormPropelChoice(array('model' => 'tblClient', 'criteria' => $qIdClient, 'add_empty' => false)));
         $this->setValidator('id_client', new sfValidatorPropelChoice(array('model' => 'tblClient', 'required' => true)));
-        $this->widgetSchema['id_client']->setDefault(1);
+        if ($idClient) {
+            $this->widgetSchema['id_client']->setDefault($idClient);
+        } else {
+            $this->widgetSchema['id_client']->setDefault(1);
+        }
 
         $this->setWidget("id_marque", new sfWidgetFormPropelChoice(array('model' => 'refMarque', 'add_empty' => false)));
         $this->setValidator('id_marque', new sfValidatorPropelChoice(array('model' => 'refMarque', 'required' => false)));
@@ -81,30 +88,15 @@ class TblVoitureForm extends BaseTblVoitureForm {
             $object->setImmatriculation($newImmat);
         }
 
-
         $tblVoitures = TblVoitureQuery::create()
                 ->filterByImmatriculation($newImmat)
                 ->withColumn('MAX(' . TblVoiturePeer::NB_VISITE . ')', "nbrVisite")
                 ->select('nbrVisite')
                 ->findOne();
+        
         $nbrVisite = $tblVoitures + 1;
         $object->setNbVisite($nbrVisite);
         $object->save();
-
-        // ajouter Voiture a objectif realisé tbl_objectif
-        $mois = date('m');
-        $annee = date('Y');
-        $moisCourant = 'MONTH(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $mois;
-        $anneeCourante = 'YEAR(' . TblObjectifPeer::OBJECTIF_DATE . ')=' . $annee;
-        $monObjectif = TblObjectifQuery::create()
-                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $moisCourant, Criteria::CUSTOM)
-                ->addAnd(TblObjectifPeer::OBJECTIF_DATE, $anneeCourante, Criteria::CUSTOM)
-                ->findOne();
-        if ($monObjectif) {
-            $monObjectifRealise = $monObjectif->getObjectifRealise();
-            $monObjectif->setObjectifRealise($monObjectifRealise + 1);
-            $monObjectif->save();
-        }
     }
 
 }

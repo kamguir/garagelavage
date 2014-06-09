@@ -2,3 +2,11 @@ newSuccess:
   stylesheets:
     - forFormulaire.css
   javascripts: [ jquery.maskedinput-1.3.js ]
+  
+listeClientsSuccess:
+  javascripts:
+    - jquery.dataTables.min.js
+    - jquery.plugins.js
+    - jquery-ui.js
+    - jscolor.js
+  stylesheets: [ dataTable/table_jui.css , ui-lightness/jquery-ui-1.8.17.custom.css , -forFormulaire.css ]  

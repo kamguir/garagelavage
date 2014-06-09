@@ -50,6 +50,6 @@
     <h3 class="page-header">Actions</h3>
     <div>
         <a href="<?php echo url_for('tapis/newTapis') ?>" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i>Ajouter Tapis</a> 
-        <a href="<?php echo url_for('tapis/index') ?>" class="btn btn-primary"><i class="icon-list icon-white"></i>Liste des Tapis</a> 
+        <a href="<?php echo url_for('tapis/listeTapis') ?>" class="btn btn-primary"><i class="icon-list icon-white"></i>Liste des Tapis</a> 
     </div></br>
 </div>

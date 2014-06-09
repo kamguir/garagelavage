@@ -24,7 +24,20 @@ class TblClient extends BaseTblClient {
     public function getLibelle() {
         return $this->getNomClient() . ' ' . $this->getPrenomClient();
     }
-    
+
+    public function toArrayString() {
+        
+        return array(
+            ucfirst($this->getNomClient()) . ' ' . ucfirst($this->getPrenomClient()),
+            $this->getRefSituation()->getSituation(),
+            $this->getAgeClient(),
+            $this->getNumTel(),
+            $this->getAdresseClient(),
+            $this->getFonctionClient(),
+            "DT_RowId" => "row_" . $this->getIdClient()
+        );
+    }
+
 }
 
 // TblClient

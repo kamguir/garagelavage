@@ -10,7 +10,7 @@
             <tr>
                 <td colspan="2">
                     <?php echo $form->renderHiddenFields(false) ?>
-                    &nbsp;<a class="btn btn-info" href="<?php echo url_for('client/index') ?>">Retour list</a>
+                    &nbsp;<a class="btn btn-info" href="<?php echo url_for('client/listeClients') ?>">Retour list</a>
                     <?php if (!$form->getObject()->isNew()): ?>
                         &nbsp;<a class="btn btn-danger" <?php echo link_to('Supprimer', 'client/delete?id_client=' . $form->getObject()->getIdClient(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></a>
                     <?php endif; ?>
